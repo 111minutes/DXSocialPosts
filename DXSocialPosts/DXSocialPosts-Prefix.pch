@@ -4,4 +4,7 @@
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
+    #import "DXDefines.h"
+    #import <DXDAL.h>
+    #import <DXFoundation/DXSingleton.h>
 #endif

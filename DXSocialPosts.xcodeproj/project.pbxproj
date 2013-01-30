@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A78B401524A411BB644554C /* libPods-DXSocialPostsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1669AFA3EE7D48348F066A2B /* libPods-DXSocialPostsTests.a */; };
+		6DA75EF9591E46409BC97EEC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9B598C237F4387A408C0B8 /* libPods.a */; };
 		EAC11F0616B8F6160031CC88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC11F0516B8F6160031CC88 /* Foundation.framework */; };
 		EAC11F0B16B8F6160031CC88 /* DXSocialPosts.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAC11F0A16B8F6160031CC88 /* DXSocialPosts.h */; };
 		EAC11F0D16B8F6160031CC88 /* DXSocialPosts.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F0C16B8F6160031CC88 /* DXSocialPosts.m */; };
@@ -15,7 +17,13 @@
 		EAC11F1816B8F6160031CC88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC11F0516B8F6160031CC88 /* Foundation.framework */; };
 		EAC11F1B16B8F6160031CC88 /* libDXSocialPosts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC11F0216B8F6160031CC88 /* libDXSocialPosts.a */; };
 		EAC11F2116B8F6160031CC88 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAC11F1F16B8F6160031CC88 /* InfoPlist.strings */; };
-		EAC11F2416B8F6160031CC88 /* DXSocialPostsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F2316B8F6160031CC88 /* DXSocialPostsTests.m */; };
+		EAC11F2F16B8F68C0031CC88 /* DXSocialPostsFacebookFeedSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F2E16B8F68C0031CC88 /* DXSocialPostsFacebookFeedSpec.m */; };
+		EAC11F3916B8F6B40031CC88 /* DXDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F3316B8F6B40031CC88 /* DXDefines.m */; };
+		EAC11F3A16B8F6B40031CC88 /* DXFacebookFeedRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F3816B8F6B40031CC88 /* DXFacebookFeedRequestFactory.m */; };
+		EAC11F4016B8FD850031CC88 /* DXTwitterTimelineRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F3F16B8FD850031CC88 /* DXTwitterTimelineRequestFactory.m */; };
+		EAC11F4316B902660031CC88 /* DXSocialPostsTwitterTimelineSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F4216B902660031CC88 /* DXSocialPostsTwitterTimelineSpec.m */; };
+		EAC11F4816B906FB0031CC88 /* DXWeiboTimelineRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F4716B906FB0031CC88 /* DXWeiboTimelineRequestFactory.m */; };
+		EAC11F4B16B90ACA0031CC88 /* DXSocialPostsWeiboTimelineSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F4A16B90ACA0031CC88 /* DXSocialPostsWeiboTimelineSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +50,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1669AFA3EE7D48348F066A2B /* libPods-DXSocialPostsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DXSocialPostsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B9B598C237F4387A408C0B8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8846E0E5071C4D1B96408092 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		AFA283F1A7F44CD4A8A48C90 /* Pods-DXSocialPostsTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DXSocialPostsTests.xcconfig"; path = "Pods/Pods-DXSocialPostsTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		EAC11F0216B8F6160031CC88 /* libDXSocialPosts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDXSocialPosts.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC11F0516B8F6160031CC88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EAC11F0916B8F6160031CC88 /* DXSocialPosts-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXSocialPosts-Prefix.pch"; sourceTree = "<group>"; };
@@ -52,8 +64,18 @@
 		EAC11F1616B8F6160031CC88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		EAC11F1E16B8F6160031CC88 /* DXSocialPostsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DXSocialPostsTests-Info.plist"; sourceTree = "<group>"; };
 		EAC11F2016B8F6160031CC88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EAC11F2216B8F6160031CC88 /* DXSocialPostsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXSocialPostsTests.h; sourceTree = "<group>"; };
-		EAC11F2316B8F6160031CC88 /* DXSocialPostsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXSocialPostsTests.m; sourceTree = "<group>"; };
+		EAC11F2E16B8F68C0031CC88 /* DXSocialPostsFacebookFeedSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSocialPostsFacebookFeedSpec.m; sourceTree = "<group>"; };
+		EAC11F3216B8F6B40031CC88 /* DXDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXDefines.h; sourceTree = "<group>"; };
+		EAC11F3316B8F6B40031CC88 /* DXDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXDefines.m; sourceTree = "<group>"; };
+		EAC11F3716B8F6B40031CC88 /* DXFacebookFeedRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXFacebookFeedRequestFactory.h; sourceTree = "<group>"; };
+		EAC11F3816B8F6B40031CC88 /* DXFacebookFeedRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXFacebookFeedRequestFactory.m; sourceTree = "<group>"; };
+		EAC11F3E16B8FD850031CC88 /* DXTwitterTimelineRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXTwitterTimelineRequestFactory.h; sourceTree = "<group>"; };
+		EAC11F3F16B8FD850031CC88 /* DXTwitterTimelineRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXTwitterTimelineRequestFactory.m; sourceTree = "<group>"; };
+		EAC11F4216B902660031CC88 /* DXSocialPostsTwitterTimelineSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSocialPostsTwitterTimelineSpec.m; sourceTree = "<group>"; };
+		EAC11F4416B903A00031CC88 /* DXSocialPostsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXSocialPostsTests-Prefix.pch"; sourceTree = "<group>"; };
+		EAC11F4616B906FB0031CC88 /* DXWeiboTimelineRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXWeiboTimelineRequestFactory.h; sourceTree = "<group>"; };
+		EAC11F4716B906FB0031CC88 /* DXWeiboTimelineRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXWeiboTimelineRequestFactory.m; sourceTree = "<group>"; };
+		EAC11F4A16B90ACA0031CC88 /* DXSocialPostsWeiboTimelineSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSocialPostsWeiboTimelineSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAC11F0616B8F6160031CC88 /* Foundation.framework in Frameworks */,
+				6DA75EF9591E46409BC97EEC /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +96,7 @@
 				EAC11F1716B8F6160031CC88 /* UIKit.framework in Frameworks */,
 				EAC11F1816B8F6160031CC88 /* Foundation.framework in Frameworks */,
 				EAC11F1B16B8F6160031CC88 /* libDXSocialPosts.a in Frameworks */,
+				4A78B401524A411BB644554C /* libPods-DXSocialPostsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +110,8 @@
 				EAC11F1C16B8F6160031CC88 /* DXSocialPostsTests */,
 				EAC11F0416B8F6160031CC88 /* Frameworks */,
 				EAC11F0316B8F6160031CC88 /* Products */,
+				AFA283F1A7F44CD4A8A48C90 /* Pods-DXSocialPostsTests.xcconfig */,
+				8846E0E5071C4D1B96408092 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +130,8 @@
 				EAC11F0516B8F6160031CC88 /* Foundation.framework */,
 				EAC11F1416B8F6160031CC88 /* SenTestingKit.framework */,
 				EAC11F1616B8F6160031CC88 /* UIKit.framework */,
+				1669AFA3EE7D48348F066A2B /* libPods-DXSocialPostsTests.a */,
+				1B9B598C237F4387A408C0B8 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -111,6 +139,8 @@
 		EAC11F0716B8F6160031CC88 /* DXSocialPosts */ = {
 			isa = PBXGroup;
 			children = (
+				EAC11F3116B8F6B40031CC88 /* Defines */,
+				EAC11F3416B8F6B40031CC88 /* Domain */,
 				EAC11F0A16B8F6160031CC88 /* DXSocialPosts.h */,
 				EAC11F0C16B8F6160031CC88 /* DXSocialPosts.m */,
 				EAC11F0816B8F6160031CC88 /* Supporting Files */,
@@ -129,8 +159,7 @@
 		EAC11F1C16B8F6160031CC88 /* DXSocialPostsTests */ = {
 			isa = PBXGroup;
 			children = (
-				EAC11F2216B8F6160031CC88 /* DXSocialPostsTests.h */,
-				EAC11F2316B8F6160031CC88 /* DXSocialPostsTests.m */,
+				EAC11F2D16B8F68C0031CC88 /* Specs */,
 				EAC11F1D16B8F6160031CC88 /* Supporting Files */,
 			);
 			path = DXSocialPostsTests;
@@ -141,8 +170,81 @@
 			children = (
 				EAC11F1E16B8F6160031CC88 /* DXSocialPostsTests-Info.plist */,
 				EAC11F1F16B8F6160031CC88 /* InfoPlist.strings */,
+				EAC11F4416B903A00031CC88 /* DXSocialPostsTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EAC11F2D16B8F68C0031CC88 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				EAC11F2E16B8F68C0031CC88 /* DXSocialPostsFacebookFeedSpec.m */,
+				EAC11F4216B902660031CC88 /* DXSocialPostsTwitterTimelineSpec.m */,
+				EAC11F4A16B90ACA0031CC88 /* DXSocialPostsWeiboTimelineSpec.m */,
+			);
+			path = Specs;
+			sourceTree = "<group>";
+		};
+		EAC11F3116B8F6B40031CC88 /* Defines */ = {
+			isa = PBXGroup;
+			children = (
+				EAC11F3216B8F6B40031CC88 /* DXDefines.h */,
+				EAC11F3316B8F6B40031CC88 /* DXDefines.m */,
+			);
+			path = Defines;
+			sourceTree = "<group>";
+		};
+		EAC11F3416B8F6B40031CC88 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				EAD89FCE16B97653005751AA /* Parsers */,
+				EAC11F3516B8F6B40031CC88 /* RequestFactories */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		EAC11F3516B8F6B40031CC88 /* RequestFactories */ = {
+			isa = PBXGroup;
+			children = (
+				EAC11F4516B906D80031CC88 /* WeiboRequestFactory */,
+				EAC11F3D16B8FD4D0031CC88 /* TwitterRequestFactory */,
+				EAC11F3616B8F6B40031CC88 /* FacebookFeedRequestFactory */,
+			);
+			path = RequestFactories;
+			sourceTree = "<group>";
+		};
+		EAC11F3616B8F6B40031CC88 /* FacebookFeedRequestFactory */ = {
+			isa = PBXGroup;
+			children = (
+				EAC11F3716B8F6B40031CC88 /* DXFacebookFeedRequestFactory.h */,
+				EAC11F3816B8F6B40031CC88 /* DXFacebookFeedRequestFactory.m */,
+			);
+			path = FacebookFeedRequestFactory;
+			sourceTree = "<group>";
+		};
+		EAC11F3D16B8FD4D0031CC88 /* TwitterRequestFactory */ = {
+			isa = PBXGroup;
+			children = (
+				EAC11F3E16B8FD850031CC88 /* DXTwitterTimelineRequestFactory.h */,
+				EAC11F3F16B8FD850031CC88 /* DXTwitterTimelineRequestFactory.m */,
+			);
+			path = TwitterRequestFactory;
+			sourceTree = "<group>";
+		};
+		EAC11F4516B906D80031CC88 /* WeiboRequestFactory */ = {
+			isa = PBXGroup;
+			children = (
+				EAC11F4616B906FB0031CC88 /* DXWeiboTimelineRequestFactory.h */,
+				EAC11F4716B906FB0031CC88 /* DXWeiboTimelineRequestFactory.m */,
+			);
+			path = WeiboRequestFactory;
+			sourceTree = "<group>";
+		};
+		EAD89FCE16B97653005751AA /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Parsers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +257,7 @@
 				EAC11EFE16B8F6160031CC88 /* Sources */,
 				EAC11EFF16B8F6160031CC88 /* Frameworks */,
 				EAC11F0016B8F6160031CC88 /* CopyFiles */,
+				1F043DB33F454051B33E1072 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -173,6 +276,7 @@
 				EAC11F0F16B8F6160031CC88 /* Frameworks */,
 				EAC11F1016B8F6160031CC88 /* Resources */,
 				EAC11F1116B8F6160031CC88 /* ShellScript */,
+				7BD19860DC624635B2E61BEA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -223,6 +327,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1F043DB33F454051B33E1072 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		7BD19860DC624635B2E61BEA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-DXSocialPostsTests-resources.sh\"\n";
+		};
 		EAC11F1116B8F6160031CC88 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -244,6 +376,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAC11F0D16B8F6160031CC88 /* DXSocialPosts.m in Sources */,
+				EAC11F3916B8F6B40031CC88 /* DXDefines.m in Sources */,
+				EAC11F3A16B8F6B40031CC88 /* DXFacebookFeedRequestFactory.m in Sources */,
+				EAC11F4016B8FD850031CC88 /* DXTwitterTimelineRequestFactory.m in Sources */,
+				EAC11F4816B906FB0031CC88 /* DXWeiboTimelineRequestFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +387,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAC11F2416B8F6160031CC88 /* DXSocialPostsTests.m in Sources */,
+				EAC11F2F16B8F68C0031CC88 /* DXSocialPostsFacebookFeedSpec.m in Sources */,
+				EAC11F4316B902660031CC88 /* DXSocialPostsTwitterTimelineSpec.m in Sources */,
+				EAC11F4B16B90ACA0031CC88 /* DXSocialPostsWeiboTimelineSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +470,7 @@
 		};
 		EAC11F2816B8F6160031CC88 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8846E0E5071C4D1B96408092 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/DXSocialPosts.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -344,6 +483,7 @@
 		};
 		EAC11F2916B8F6160031CC88 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8846E0E5071C4D1B96408092 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/DXSocialPosts.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -356,13 +496,14 @@
 		};
 		EAC11F2B16B8F6160031CC88 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFA283F1A7F44CD4A8A48C90 /* Pods-DXSocialPostsTests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DXSocialPosts/DXSocialPosts-Prefix.pch";
+				GCC_PREFIX_HEADER = "DXSocialPostsTests/DXSocialPostsTests-Prefix.pch";
 				INFOPLIST_FILE = "DXSocialPostsTests/DXSocialPostsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -371,13 +512,14 @@
 		};
 		EAC11F2C16B8F6160031CC88 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFA283F1A7F44CD4A8A48C90 /* Pods-DXSocialPostsTests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DXSocialPosts/DXSocialPosts-Prefix.pch";
+				GCC_PREFIX_HEADER = "DXSocialPostsTests/DXSocialPostsTests-Prefix.pch";
 				INFOPLIST_FILE = "DXSocialPostsTests/DXSocialPostsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -403,6 +545,7 @@
 				EAC11F2916B8F6160031CC88 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EAC11F2A16B8F6160031CC88 /* Build configuration list for PBXNativeTarget "DXSocialPostsTests" */ = {
 			isa = XCConfigurationList;
@@ -411,6 +554,7 @@
 				EAC11F2C16B8F6160031CC88 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
