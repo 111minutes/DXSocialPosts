@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'DXSocialPosts' target in the 'DXSocialPosts' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
