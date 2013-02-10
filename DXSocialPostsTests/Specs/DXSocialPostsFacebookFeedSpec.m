@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 TheSooth. All rights reserved.
 //
 
-
 SPEC_BEGIN(FacebookFeedPostsSpec)
 
 describe(@"Facebook Feed API", ^{
@@ -14,13 +13,12 @@ describe(@"Facebook Feed API", ^{
         long long powerIntegrationFacebookUserID = 116882680454;
         
         __block NSString *receivedTitle;
-        NSString *powerIntegrationWallTitle = @"Power Integrations's Facebook Wall";
         
         [DXSocialPosts getFacebookFeedPostsForUserID:powerIntegrationFacebookUserID withCallbackBlock:^(id response) {
-            receivedTitle = [response objectForKey:@"title"];
+            receivedTitle = [response[0] valueForKey:@"title"];
         }];
         
-        [[expectFutureValue(receivedTitle) shouldEventuallyBeforeTimingOutAfter(3.0)] equal:powerIntegrationWallTitle];
+        [[expectFutureValue(receivedTitle) shouldEventuallyBeforeTimingOutAfter(3.0)] shouldNotBeNil];
     });
 });
 

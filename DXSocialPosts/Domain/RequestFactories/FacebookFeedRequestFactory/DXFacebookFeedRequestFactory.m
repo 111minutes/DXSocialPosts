@@ -7,6 +7,7 @@
 //
 
 #import "DXFacebookFeedRequestFactory.h"
+#import "DXFacebookPostsMapper.h"
 
 @implementation DXFacebookFeedRequestFactory
 
@@ -30,6 +31,7 @@
         request.httpPath = @"/feeds/page.php";
     
         request.parser = [DXDALParserJSON new];
+        request.mapper = [DXFacebookPostsMapper new];
         
         [request addParam:[NSNumber numberWithLongLong:aUserID] withName:@"id"];
         [request addParam:aResponseFormat withName:@"format"];
