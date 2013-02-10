@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A78B401524A411BB644554C /* libPods-DXSocialPostsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1669AFA3EE7D48348F066A2B /* libPods-DXSocialPostsTests.a */; };
+		EA3440E516C84D5000259740 /* DXSocialPostsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3440E416C84D5000259740 /* DXSocialPostsParser.m */; };
 		EA74F6E116C7EE73006D073E /* DXFacebookPostsMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA74F6E016C7EE73006D073E /* DXFacebookPostsMapper.m */; };
 		EA74F6E616C800FB006D073E /* NSString+RegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = EA74F6E516C800FB006D073E /* NSString+RegularExpression.m */; };
 		EAC11F0616B8F6160031CC88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC11F0516B8F6160031CC88 /* Foundation.framework */; };
@@ -56,6 +57,8 @@
 		1669AFA3EE7D48348F066A2B /* libPods-DXSocialPostsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DXSocialPostsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E116B3A6D049FDACE68D27 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		AFA283F1A7F44CD4A8A48C90 /* Pods-DXSocialPostsTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DXSocialPostsTests.xcconfig"; path = "Pods/Pods-DXSocialPostsTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		EA3440E316C84D5000259740 /* DXSocialPostsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXSocialPostsParser.h; sourceTree = "<group>"; };
+		EA3440E416C84D5000259740 /* DXSocialPostsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSocialPostsParser.m; sourceTree = "<group>"; };
 		EA74F6DF16C7EE73006D073E /* DXFacebookPostsMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXFacebookPostsMapper.h; sourceTree = "<group>"; };
 		EA74F6E016C7EE73006D073E /* DXFacebookPostsMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXFacebookPostsMapper.m; sourceTree = "<group>"; };
 		EA74F6E416C800FB006D073E /* NSString+RegularExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RegularExpression.h"; sourceTree = "<group>"; };
@@ -110,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA3440E216C84D3A00259740 /* DXSocialPostsParser */ = {
+			isa = PBXGroup;
+			children = (
+				EA3440E316C84D5000259740 /* DXSocialPostsParser.h */,
+				EA3440E416C84D5000259740 /* DXSocialPostsParser.m */,
+			);
+			path = DXSocialPostsParser;
+			sourceTree = "<group>";
+		};
 		EA74F6DD16C7EE5A006D073E /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +299,7 @@
 		EAD89FCE16B97653005751AA /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
+				EA3440E216C84D3A00259740 /* DXSocialPostsParser */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -489,6 +502,7 @@
 				EAE12D2016C7ED55008C6658 /* FacebookPost.m in Sources */,
 				EA74F6E116C7EE73006D073E /* DXFacebookPostsMapper.m in Sources */,
 				EA74F6E616C800FB006D073E /* NSString+RegularExpression.m in Sources */,
+				EA3440E516C84D5000259740 /* DXSocialPostsParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,7 +626,7 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DXSocialPostsTests/DXSocialPostsTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/DXSocialPostsTests-Prefix.pch";
 				INFOPLIST_FILE = "DXSocialPostsTests/DXSocialPostsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -628,7 +642,7 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DXSocialPostsTests/DXSocialPostsTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/DXSocialPostsTests-Prefix.pch";
 				INFOPLIST_FILE = "DXSocialPostsTests/DXSocialPostsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
