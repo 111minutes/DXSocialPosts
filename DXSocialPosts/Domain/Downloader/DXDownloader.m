@@ -37,7 +37,7 @@
 {
     NSString *path = @"picture";
     
-    NSString *imageURLString = [ServicesURL.facebookApiURL stringByAppendingFormat:@"%llu/%@?type=%@",aUserID, path, aAvatarType];
+    NSString *imageURLString = [ServicesURL.facebookApiURL stringByAppendingFormat:@"/%llu/%@?type=%@",aUserID, path, aAvatarType];
     
     [self downloadObjectAtURLPath:imageURLString finishCallbackBlock:aFinishCallbackBlock];
 }

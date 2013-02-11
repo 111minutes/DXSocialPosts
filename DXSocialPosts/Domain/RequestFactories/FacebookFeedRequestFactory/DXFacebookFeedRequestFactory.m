@@ -32,7 +32,7 @@
         request.httpPath = @"/feeds/page.php";
     
         request.parser = [DXSocialPostsParser new];
-        request.mapper = [DXFacebookPostsMapper new];
+        request.mapper = [[DXFacebookPostsMapper alloc] initWithFacebookUserID:aUserID];
         
         [request addParam:[NSNumber numberWithLongLong:aUserID] withName:@"id"];
         [request addParam:aResponseFormat withName:@"format"];
