@@ -12,6 +12,9 @@
 
 #import "NSString+RegularExpression.h"
 
+#import "DXDownloader.h"
+#import "DXCacheStorage.h"
+
 @implementation DXFacebookPostsMapper
 
 - (id)mapFromInputData:(id)inputData withClass:(Class)mappingClass
@@ -31,6 +34,8 @@
         post.postText = [self postTextFromContent:content];
         post.imageLink = [self imageURLStringFromContent:content];
         
+        [self mapImageToModel:post];
+        
         [facebookPostsArray addObject:post];
     }
     
@@ -39,7 +44,7 @@
 
 - (NSString *)titleFromContent:(NSString *)aContent
 {
-    #warning Need to make a "right" regular pattern
+#warning Need to make a "right" regular pattern
     NSString *title = [aContent stringByMatchingRegularExpressionPattern:@">+[^<>]+"];
     
     return [title stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""];
@@ -63,12 +68,24 @@
 
 - (NSString *)imageURLStringFromContent:(NSString *)aContent
 {
-    #warning Need to make a "right" regular pattern
+#warning Need to make a "right" regular pattern
+    
     NSString *imageURLEncodedLink = [aContent stringByMatchingRegularExpressionPattern:@"(?:url=)+http[^\\s\"]+"];
     NSString *imageURLDecodedLink = [imageURLEncodedLink stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
     
     return imageURLString;
+}
+
+- (void)mapImageToModel:(FacebookPost *)aModel
+{
+    if (aModel.imageLink) {
+        [DXDownloader downloadObjectAtURLPath:aModel.imageLink finishCallbackBlock:^(id aObject) {
+            if ([aObject isKindOfClass:[NSError class]]) {
+                aModel.localImagePath = [DXCacheStorage saveObjectToCache:aObject withName:aModel.imageLink.lastPathComponent];
+            }
+        }];
+    }
 }
 
 @end

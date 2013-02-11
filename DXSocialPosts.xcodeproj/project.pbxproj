@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4A78B401524A411BB644554C /* libPods-DXSocialPostsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1669AFA3EE7D48348F066A2B /* libPods-DXSocialPostsTests.a */; };
 		EA3440E516C84D5000259740 /* DXSocialPostsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3440E416C84D5000259740 /* DXSocialPostsParser.m */; };
+		EA4CCE2916C9368A008D4524 /* DXCacheStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CCE2816C9368A008D4524 /* DXCacheStorage.m */; };
+		EA4CCE2D16C93722008D4524 /* DXDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CCE2C16C93722008D4524 /* DXDownloader.m */; };
 		EA74F6E116C7EE73006D073E /* DXFacebookPostsMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA74F6E016C7EE73006D073E /* DXFacebookPostsMapper.m */; };
 		EA74F6E616C800FB006D073E /* NSString+RegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = EA74F6E516C800FB006D073E /* NSString+RegularExpression.m */; };
 		EAC11F0616B8F6160031CC88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC11F0516B8F6160031CC88 /* Foundation.framework */; };
@@ -60,6 +62,10 @@
 		AFA283F1A7F44CD4A8A48C90 /* Pods-DXSocialPostsTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DXSocialPostsTests.xcconfig"; path = "Pods/Pods-DXSocialPostsTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		EA3440E316C84D5000259740 /* DXSocialPostsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXSocialPostsParser.h; sourceTree = "<group>"; };
 		EA3440E416C84D5000259740 /* DXSocialPostsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSocialPostsParser.m; sourceTree = "<group>"; };
+		EA4CCE2716C9368A008D4524 /* DXCacheStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXCacheStorage.h; sourceTree = "<group>"; };
+		EA4CCE2816C9368A008D4524 /* DXCacheStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXCacheStorage.m; sourceTree = "<group>"; };
+		EA4CCE2B16C93722008D4524 /* DXDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXDownloader.h; sourceTree = "<group>"; };
+		EA4CCE2C16C93722008D4524 /* DXDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXDownloader.m; sourceTree = "<group>"; };
 		EA74F6DF16C7EE73006D073E /* DXFacebookPostsMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXFacebookPostsMapper.h; sourceTree = "<group>"; };
 		EA74F6E016C7EE73006D073E /* DXFacebookPostsMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXFacebookPostsMapper.m; sourceTree = "<group>"; };
 		EA74F6E416C800FB006D073E /* NSString+RegularExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RegularExpression.h"; sourceTree = "<group>"; };
@@ -121,6 +127,32 @@
 				EA3440E416C84D5000259740 /* DXSocialPostsParser.m */,
 			);
 			path = DXSocialPostsParser;
+			sourceTree = "<group>";
+		};
+		EA4CCE2516C93676008D4524 /* Storages */ = {
+			isa = PBXGroup;
+			children = (
+				EA4CCE2616C93676008D4524 /* DXCacheStorage */,
+			);
+			path = Storages;
+			sourceTree = "<group>";
+		};
+		EA4CCE2616C93676008D4524 /* DXCacheStorage */ = {
+			isa = PBXGroup;
+			children = (
+				EA4CCE2716C9368A008D4524 /* DXCacheStorage.h */,
+				EA4CCE2816C9368A008D4524 /* DXCacheStorage.m */,
+			);
+			path = DXCacheStorage;
+			sourceTree = "<group>";
+		};
+		EA4CCE2A16C9370D008D4524 /* Downloader */ = {
+			isa = PBXGroup;
+			children = (
+				EA4CCE2B16C93722008D4524 /* DXDownloader.h */,
+				EA4CCE2C16C93722008D4524 /* DXDownloader.m */,
+			);
+			path = Downloader;
 			sourceTree = "<group>";
 		};
 		EA74F6DD16C7EE5A006D073E /* Mappers */ = {
@@ -252,6 +284,8 @@
 		EAC11F3416B8F6B40031CC88 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EA4CCE2A16C9370D008D4524 /* Downloader */,
+				EA4CCE2516C93676008D4524 /* Storages */,
 				EA74F6E216C800E1006D073E /* Categories */,
 				EA74F6DD16C7EE5A006D073E /* Mappers */,
 				EAE12D1416C7ECF0008C6658 /* Models */,
@@ -520,6 +554,8 @@
 				EA74F6E116C7EE73006D073E /* DXFacebookPostsMapper.m in Sources */,
 				EA74F6E616C800FB006D073E /* NSString+RegularExpression.m in Sources */,
 				EA3440E516C84D5000259740 /* DXSocialPostsParser.m in Sources */,
+				EA4CCE2916C9368A008D4524 /* DXCacheStorage.m in Sources */,
+				EA4CCE2D16C93722008D4524 /* DXDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

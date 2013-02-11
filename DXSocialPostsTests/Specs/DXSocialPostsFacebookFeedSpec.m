@@ -15,10 +15,11 @@ describe(@"Facebook Feed API", ^{
         __block NSString *receivedTitle;
         
         [DXSocialPosts getFacebookFeedPostsForUserID:powerIntegrationFacebookUserID withCallbackBlock:^(id response) {
-            receivedTitle = [response[0] valueForKey:@"title"];
+            receivedTitle = [response[4] valueForKey:@"localImagePath"];
+            NSLog(@"localImagePath = %@", receivedTitle);
         }];
         
-        [[expectFutureValue(receivedTitle) shouldEventuallyBeforeTimingOutAfter(3.0)] shouldNotBeNil];
+        [[expectFutureValue(receivedTitle) shouldEventuallyBeforeTimingOutAfter(10.0)] shouldBeNil];
     });
 });
 
