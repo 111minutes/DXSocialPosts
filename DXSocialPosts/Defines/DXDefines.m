@@ -32,3 +32,11 @@ const struct AppKeys AppKeys =
 {
     .weiboAppKey = 31024382
 };
+
+const struct FacebookAvatarTypes FacebookAvatarTypes =
+{
+    .large = @"large",
+    .normal = @"normal",
+    .small = @"small",
+    .square = @"square"
+};

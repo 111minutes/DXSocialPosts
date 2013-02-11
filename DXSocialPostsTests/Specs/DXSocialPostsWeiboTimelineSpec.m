@@ -26,7 +26,7 @@ describe(@"Weibo API", ^{
             fetchedData = response;
         }];
         
-        [[expectFutureValue(receivedName) shouldEventuallyBeforeTimingOutAfter(3.0)] equal:name];
+        [[expectFutureValue(receivedName) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:name];
     });
 });
 

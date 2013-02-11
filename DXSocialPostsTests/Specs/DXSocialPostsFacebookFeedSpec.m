@@ -12,14 +12,13 @@ describe(@"Facebook Feed API", ^{
     it(@"should get feed of user", ^{
         long long powerIntegrationFacebookUserID = 116882680454;
         
-        __block NSString *receivedTitle;
+        __block NSString *receivedPost;
         
         [DXSocialPosts getFacebookFeedPostsForUserID:powerIntegrationFacebookUserID withCallbackBlock:^(id response) {
-            receivedTitle = [response[4] valueForKey:@"localImagePath"];
-            NSLog(@"localImagePath = %@", receivedTitle);
+            receivedPost = [response[0] valueForKey:@"postText"];
         }];
         
-        [[expectFutureValue(receivedTitle) shouldEventuallyBeforeTimingOutAfter(10.0)] shouldBeNil];
+        [[expectFutureValue(receivedPost) shouldEventuallyBeforeTimingOutAfter(10.0)] shouldNotBeNil];
     });
 });
 

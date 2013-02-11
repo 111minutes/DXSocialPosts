@@ -32,3 +32,11 @@ const struct AppKeys
 {
     NSUInteger weiboAppKey;
 } AppKeys;
+
+const struct FacebookAvatarTypes
+{
+    __unsafe_unretained NSString *large;
+    __unsafe_unretained NSString *normal;
+    __unsafe_unretained NSString *small;
+    __unsafe_unretained NSString *square;
+} FacebookAvatarTypes;

@@ -97,6 +97,9 @@
     return nil;
 }
 
+#pragma mark - 
+#pragma mark - Image mapping
+
 - (void)mapImageToModel:(FacebookPost *)aModel
 {
     if (aModel.imageLink) {
@@ -106,14 +109,20 @@
             }
         }];
     } else {
-        NSString *avatarPath = [DXCacheStorage avatarPathForFacebookUserID:self.facebookUserID];
-        if (avatarPath) {
-            aModel.localImagePath = avatarPath;
-        } else {
-            [DXDownloader downloadFacebookUserAvatarByID:self.facebookUserID avatarType:@"long" finishCallbackBlock:^(id aObject) {
-                aModel.localImagePath = avatarPath;
-            }];
-        }
+        [self mapDefaultUserAvatarToModel:aModel];
+    }
+}
+
+- (void)mapDefaultUserAvatarToModel:(FacebookPost *)aModel
+{
+    NSString *avatarPath = [DXCacheStorage avatarPathForFacebookUserID:self.facebookUserID];
+    if (avatarPath) {
+        aModel.localImagePath = avatarPath;
+    } else {
+        [DXDownloader downloadFacebookUserAvatarByID:self.facebookUserID avatarType:FacebookAvatarTypes.large finishCallbackBlock:^(id aObject) {
+            aModel.localImagePath = [DXCacheStorage saveObjectToCache:aObject
+                                                             withName:[NSString stringWithFormat:@"%llu", self.facebookUserID]];
+        }];
     }
 }
 
