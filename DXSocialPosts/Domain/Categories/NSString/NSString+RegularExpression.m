@@ -12,9 +12,6 @@
 
 - (NSString *)stringByMatchingRegularExpressionPattern:(NSString *)aRegularExpressionPatterh
 {
-    NSRegularExpression *regularExpression = [[NSRegularExpression alloc] initWithPattern:aRegularExpressionPatterh
-                                                                                  options:NSRegularExpressionIgnoreMetacharacters
-                                                                                    error:nil];
     NSRange range = [self rangeOfString:aRegularExpressionPatterh options:NSRegularExpressionSearch];
     NSString *stringWithRegular = nil;
     

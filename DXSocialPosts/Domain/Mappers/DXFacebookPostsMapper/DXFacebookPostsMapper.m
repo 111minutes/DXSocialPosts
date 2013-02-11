@@ -6,14 +6,13 @@
 //  Copyright (c) 2013 TheSooth. All rights reserved.
 //
 
-#import "DXFacebookPostsMapper.h"
-
-#import "FacebookPost.h"
-
 #import "NSString+RegularExpression.h"
 
+#import "DXFacebookPostsMapper.h"
 #import "DXDownloader.h"
 #import "DXCacheStorage.h"
+
+#import "FacebookPost.h"
 
 @interface DXFacebookPostsMapper ()
 
@@ -85,7 +84,6 @@
 - (NSString *)imageURLStringFromContent:(NSString *)aContent
 {
 #warning Need to make a "right" regular pattern
-    
     NSString *imageURLEncodedLink = [aContent stringByMatchingRegularExpressionPattern:@"(?:url=)+http[^\\s\"]+"];
     
     if (imageURLEncodedLink) {
@@ -103,25 +101,31 @@
 - (void)mapImageToModel:(FacebookPost *)aModel
 {
     if (aModel.imageLink) {
-        [DXDownloader downloadObjectAtURLPath:aModel.imageLink finishCallbackBlock:^(id aObject) {
-            if (![aObject isKindOfClass:[NSError class]]) {
-                aModel.localImagePath = [DXCacheStorage saveObjectToCache:aObject withName:aModel.imageLink.lastPathComponent];
-            }
-        }];
+        [self downloadImageAndMapToModel:aModel];
     } else {
         [self mapDefaultUserAvatarToModel:aModel];
     }
 }
 
+- (void)downloadImageAndMapToModel:(FacebookPost *)aModel
+{
+    [DXDownloader downloadObjectAtURLPath:aModel.imageLink finishCallbackBlock:^(id aObject) {
+        if (![aObject isKindOfClass:[NSError class]]) {
+            aModel.localImagePath = [[DXCacheStorage shared] saveFacebookImageDataCache:aObject
+                                                                               withName:aModel.imageLink.lastPathComponent];
+        }
+    }];
+}
+
 - (void)mapDefaultUserAvatarToModel:(FacebookPost *)aModel
 {
-    NSString *avatarPath = [DXCacheStorage avatarPathForFacebookUserID:self.facebookUserID];
+    NSString *avatarPath = [[DXCacheStorage shared] avatarPathForFacebookUserID:self.facebookUserID];
     if (avatarPath) {
         aModel.localImagePath = avatarPath;
     } else {
         [DXDownloader downloadFacebookUserAvatarByID:self.facebookUserID avatarType:FacebookAvatarTypes.large finishCallbackBlock:^(id aObject) {
-            aModel.localImagePath = [DXCacheStorage saveObjectToCache:aObject
-                                                             withName:[NSString stringWithFormat:@"%llu", self.facebookUserID]];
+            aModel.localImagePath = [[DXCacheStorage shared] saveFacebookImageDataCache:aObject
+                                                                               withName:[NSString stringWithFormat:@"%llu", self.facebookUserID]];
         }];
     }
 }

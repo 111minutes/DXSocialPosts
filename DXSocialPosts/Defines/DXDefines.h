@@ -40,3 +40,8 @@ const struct FacebookAvatarTypes
     __unsafe_unretained NSString *small;
     __unsafe_unretained NSString *square;
 } FacebookAvatarTypes;
+
+const struct Paths
+{
+    __unsafe_unretained NSString *facebookImagesDir;
+} Paths;

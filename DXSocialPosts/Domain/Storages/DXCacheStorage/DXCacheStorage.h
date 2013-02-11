@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 TheSooth. All rights reserved.
 //
 
-@interface DXCacheStorage : NSObject
+@interface DXCacheStorage : NSObject <DXSingleton>
 
-+ (NSString *)saveObjectToCache:(id)aObject withName:(NSString *)aName;
+- (NSString *)saveFacebookImageDataCache:(id)aImageData withName:(NSString *)aName;
 
-+ (NSString *)avatarPathForFacebookUserID:(long long)aUserID;
+- (NSString *)avatarPathForFacebookUserID:(long long)aUserID;
 
 @end

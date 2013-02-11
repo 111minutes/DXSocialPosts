@@ -8,38 +8,49 @@
 
 #import "DXCacheStorage.h"
 
+@interface DXCacheStorage ()
+
+@property (nonatomic, strong) NSFileManager *fileManager;
+@property (nonatomic, strong) NSString *cacheDirectory;
+
+@property (nonatomic, strong) NSString *facebookAvatarsCacheDirectory;
+
+@end
+
 @implementation DXCacheStorage
 
-+ (NSString *)saveObjectToCache:(id)aObject withName:(NSString *)aName
+- (id)init
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    self = [super init];
+    if (self) {
+        self.fileManager = [NSFileManager defaultManager];
+        self.cacheDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        self.facebookAvatarsCacheDirectory = [self.cacheDirectory stringByAppendingPathComponent:Paths.facebookImagesDir];
+    }
     
-    NSString *cacheDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *documentsCacheDirectory = [cacheDirectory stringByAppendingPathComponent:@"NewsImages"];
-    
-    NSString *filePath = [documentsCacheDirectory stringByAppendingPathComponent:aName];
+    return self;
+}
+
+- (NSString *)saveFacebookImageDataCache:(id)aImageData withName:(NSString *)aName
+{
+    NSString *filePath = [self.facebookAvatarsCacheDirectory stringByAppendingPathComponent:aName];
     
     BOOL isDir = NO;
     
-    if (![fileManager fileExistsAtPath:documentsCacheDirectory isDirectory:&isDir] && isDir == NO) {
-        [fileManager createDirectoryAtPath:documentsCacheDirectory withIntermediateDirectories:NO attributes:nil error:nil];
+    if (![self.fileManager fileExistsAtPath:self.facebookAvatarsCacheDirectory isDirectory:&isDir] && isDir == NO) {
+        [self.fileManager createDirectoryAtPath:self.facebookAvatarsCacheDirectory withIntermediateDirectories:NO attributes:nil error:nil];
     }
     
-    [fileManager createFileAtPath:filePath contents:aObject attributes:nil];
+    [self.fileManager createFileAtPath:filePath contents:aImageData attributes:nil];
     
     return filePath;
 }
 
-+ (NSString *)avatarPathForFacebookUserID:(long long)aUserID
+- (NSString *)avatarPathForFacebookUserID:(long long)aUserID
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *filePath = [self.facebookAvatarsCacheDirectory stringByAppendingFormat:@"/%llu", aUserID];
     
-    NSString *cacheDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *documentsCacheDirectory = [cacheDirectory stringByAppendingPathComponent:@"NewsImages"];
-    
-    NSString *filePath = [documentsCacheDirectory stringByAppendingFormat:@"/%llu", aUserID];
-    
-    if ([fileManager fileExistsAtPath:filePath]) {
+    if ([self.fileManager fileExistsAtPath:filePath]) {
         return filePath;
     }
     

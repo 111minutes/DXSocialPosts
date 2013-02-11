@@ -40,3 +40,8 @@ const struct FacebookAvatarTypes FacebookAvatarTypes =
     .small = @"small",
     .square = @"square"
 };
+
+const struct Paths Paths =
+{
+    .facebookImagesDir = @"FacebookImages"
+};
