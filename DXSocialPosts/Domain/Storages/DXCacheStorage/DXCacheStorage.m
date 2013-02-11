@@ -17,7 +17,7 @@
     NSString *cacheDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *documentsCacheDirectory = [cacheDirectory stringByAppendingPathComponent:@"NewsImages"];
     
-    NSString *filePath = [cacheDirectory stringByAppendingPathComponent:aName];
+    NSString *filePath = [documentsCacheDirectory stringByAppendingPathComponent:aName];
     
     BOOL isDir = NO;
     
@@ -28,6 +28,22 @@
     [fileManager createFileAtPath:filePath contents:aObject attributes:nil];
     
     return filePath;
+}
+
++ (NSString *)avatarPathForFacebookUserID:(long long)aUserID
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSString *cacheDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *documentsCacheDirectory = [cacheDirectory stringByAppendingPathComponent:@"NewsImages"];
+    
+    NSString *filePath = [documentsCacheDirectory stringByAppendingFormat:@"/%llu", aUserID];
+    
+    if ([fileManager fileExistsAtPath:filePath]) {
+        return filePath;
+    }
+    
+    return nil;
 }
 
 @end

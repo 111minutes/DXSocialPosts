@@ -33,4 +33,13 @@
     [downloadOperation start];
 }
 
++ (void)downloadFacebookUserAvatarByID:(long long)aUserID avatarType:(NSString *)aAvatarType finishCallbackBlock:(void(^)(id aObject))aFinishCallbackBlock
+{
+    NSString *path = @"picture";
+    
+    NSString *imageURLString = [ServicesURL.facebookApiURL stringByAppendingFormat:@"%llu/%@?type=%@",aUserID, path, aAvatarType];
+    
+    [self downloadObjectAtURLPath:imageURLString finishCallbackBlock:aFinishCallbackBlock];
+}
+
 @end

@@ -10,4 +10,6 @@
 
 + (NSString *)saveObjectToCache:(id)aObject withName:(NSString *)aName;
 
++ (NSString *)avatarPathForFacebookUserID:(long long)aUserID;
+
 @end

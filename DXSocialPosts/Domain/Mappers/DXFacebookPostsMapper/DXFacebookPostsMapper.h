@@ -10,4 +10,6 @@
 
 @interface DXFacebookPostsMapper : NSObject <DXDALMapper>
 
+- (id)initWithFacebookUserID:(long long)aFacebookUserID;
+
 @end

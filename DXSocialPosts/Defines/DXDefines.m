@@ -11,6 +11,7 @@
 const struct ServicesURL ServicesURL =
 {
     .facebookURL = @"https://www.facebook.com",
+    .facebookApiURL = @"http://graph.facebook.com",
     .twitterApiURL = @"http://api.twitter.com",
     .weiboApiURL = @"http://api.t.sina.com.cn"
 };

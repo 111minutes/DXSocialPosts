@@ -15,7 +15,23 @@
 #import "DXDownloader.h"
 #import "DXCacheStorage.h"
 
+@interface DXFacebookPostsMapper ()
+
+@property (nonatomic) long long facebookUserID;
+
+@end
+
 @implementation DXFacebookPostsMapper
+
+- (id)initWithFacebookUserID:(long long)aFacebookUserID
+{
+    self = [super init];
+    if (self) {
+        self.facebookUserID = aFacebookUserID;
+    }
+    
+    return self;
+}
 
 - (id)mapFromInputData:(id)inputData withClass:(Class)mappingClass
 {
@@ -71,20 +87,33 @@
 #warning Need to make a "right" regular pattern
     
     NSString *imageURLEncodedLink = [aContent stringByMatchingRegularExpressionPattern:@"(?:url=)+http[^\\s\"]+"];
-    NSString *imageURLDecodedLink = [imageURLEncodedLink stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
     
-    return imageURLString;
+    if (imageURLEncodedLink) {
+        NSString *imageURLDecodedLink = [imageURLEncodedLink stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
+    
+        return imageURLString;
+    }
+    return nil;
 }
 
 - (void)mapImageToModel:(FacebookPost *)aModel
 {
     if (aModel.imageLink) {
         [DXDownloader downloadObjectAtURLPath:aModel.imageLink finishCallbackBlock:^(id aObject) {
-            if ([aObject isKindOfClass:[NSError class]]) {
+            if (![aObject isKindOfClass:[NSError class]]) {
                 aModel.localImagePath = [DXCacheStorage saveObjectToCache:aObject withName:aModel.imageLink.lastPathComponent];
             }
         }];
+    } else {
+        NSString *avatarPath = [DXCacheStorage avatarPathForFacebookUserID:self.facebookUserID];
+        if (avatarPath) {
+            aModel.localImagePath = avatarPath;
+        } else {
+            [DXDownloader downloadFacebookUserAvatarByID:self.facebookUserID avatarType:@"long" finishCallbackBlock:^(id aObject) {
+                aModel.localImagePath = avatarPath;
+            }];
+        }
     }
 }
 

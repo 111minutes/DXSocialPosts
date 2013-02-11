@@ -11,6 +11,7 @@
 extern const struct ServicesURL
 {
     __unsafe_unretained NSString *facebookURL;
+    __unsafe_unretained NSString *facebookApiURL;
     __unsafe_unretained NSString *twitterApiURL;
     __unsafe_unretained NSString *weiboApiURL;
 } ServicesURL;
