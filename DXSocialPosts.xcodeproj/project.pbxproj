@@ -626,7 +626,7 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/DXSocialPostsTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "DXSocialPostsTests/DXSocialPostsTests-Prefix.pch";
 				INFOPLIST_FILE = "DXSocialPostsTests/DXSocialPostsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -642,7 +642,7 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/DXSocialPostsTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "DXSocialPostsTests/DXSocialPostsTests-Prefix.pch";
 				INFOPLIST_FILE = "DXSocialPostsTests/DXSocialPostsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;

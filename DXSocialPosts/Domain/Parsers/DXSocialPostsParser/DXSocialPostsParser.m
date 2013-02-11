@@ -7,15 +7,17 @@
 //
 
 #import "DXSocialPostsParser.h"
+#import <JSONKit.h>
 
 @implementation DXSocialPostsParser
 
 - (id) parseString:(NSString *)aString
 {
-    NSString *decodedString = [aString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *replacedApostropheString = [decodedString stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];
+    NSString *replacedApostropheString = [aString stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];
     
-    return [super parseString:replacedApostropheString];
+    id object = [replacedApostropheString objectFromJSONStringWithParseOptions:JKParseOptionComments];
+    
+    return object;
 }
 
 @end

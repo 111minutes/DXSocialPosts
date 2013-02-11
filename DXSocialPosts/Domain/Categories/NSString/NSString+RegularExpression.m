@@ -12,10 +12,15 @@
 
 - (NSString *)stringByMatchingRegularExpressionPattern:(NSString *)aRegularExpressionPatterh
 {
-    NSRegularExpression *regularExpression = [[NSRegularExpression alloc] initWithPattern:aRegularExpressionPatterh options:0 error:nil];
-    NSRange range = [regularExpression rangeOfFirstMatchInString:self options:0 range:NSMakeRange(0, self.length)];
+    NSRegularExpression *regularExpression = [[NSRegularExpression alloc] initWithPattern:aRegularExpressionPatterh
+                                                                                  options:NSRegularExpressionIgnoreMetacharacters
+                                                                                    error:nil];
+    NSRange range = [self rangeOfString:aRegularExpressionPatterh options:NSRegularExpressionSearch];
+    NSString *stringWithRegular = nil;
     
-    NSString *stringWithRegular = [self substringWithRange:range];
+    if (range.location != NSNotFound) {
+        stringWithRegular = [self substringWithRange:range];
+    }
     
     return stringWithRegular;
 }

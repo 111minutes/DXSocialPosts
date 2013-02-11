@@ -29,6 +29,7 @@
         post.title = [self titleFromContent:content];
         post.sharedLink = [self sharedLinkFromContent:content];
         post.postText = [self postTextFromContent:content];
+        post.imageLink = [self imageURLStringFromContent:content];
         
         [facebookPostsArray addObject:post];
     }
@@ -58,6 +59,16 @@
     NSString *contentText = [aContent stringByMatchingRegularExpressionPattern:@"[^</>]+$"];
     
     return contentText;
+}
+
+- (NSString *)imageURLStringFromContent:(NSString *)aContent
+{
+    #warning Need to make a "right" regular pattern
+    NSString *imageURLEncodedLink = [aContent stringByMatchingRegularExpressionPattern:@"(?:url=)+http[^\\s\"]+"];
+    NSString *imageURLDecodedLink = [imageURLEncodedLink stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
+    
+    return imageURLString;
 }
 
 @end

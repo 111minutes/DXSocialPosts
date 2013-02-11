@@ -16,4 +16,5 @@
 
 @property (nonatomic, strong) NSString *postText;
 
+@property (nonatomic, strong) NSString *imageLink;
 @end
