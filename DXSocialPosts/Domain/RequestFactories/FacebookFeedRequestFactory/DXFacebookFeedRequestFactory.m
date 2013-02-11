@@ -14,7 +14,7 @@
 
 - (id <DXDALDataProvider>)getDataProvider
 {
-    return [[DXDALDataProviderHTTP alloc] initWithBaseURL:[NSURL URLWithString:ServicesURL.facebookURL]];
+    return [[DXDALDataProviderHTTPCached alloc] initWithBaseURL:[NSURL URLWithString:ServicesURL.facebookURL]];
 }
 
 - (Class)getDefaultRequestClass {
@@ -28,7 +28,7 @@
         NSAssert(![aResponseFormat isEqualToString:ResponseFormats.xml], @"XML reponse format currently not supported");
         NSAssert([aResponseFormat isEqualToString:ResponseFormats.json], @"Invalid response format, use json");
         
-        request.httpMethod = HTTPMethods.GET;
+        request.httpMethod = @"get";
         request.httpPath = @"/feeds/page.php";
     
         request.parser = [DXSocialPostsParser new];

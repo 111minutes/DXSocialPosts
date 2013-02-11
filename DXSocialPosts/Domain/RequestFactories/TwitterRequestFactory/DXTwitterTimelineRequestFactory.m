@@ -12,7 +12,7 @@
 
 - (id <DXDALDataProvider>)getDataProvider
 {
-    return [[DXDALDataProviderHTTP alloc] initWithBaseURL:[NSURL URLWithString:ServicesURL.twitterApiURL]];
+    return [[DXDALDataProviderHTTPCached alloc] initWithBaseURL:[NSURL URLWithString:ServicesURL.twitterApiURL]];
 }
 
 - (Class)getDefaultRequestClass {
