@@ -44,4 +44,5 @@ const struct FacebookAvatarTypes
 const struct Paths
 {
     __unsafe_unretained NSString *facebookImagesDir;
+    __unsafe_unretained NSString *twitterUserAvatarsDir;
 } Paths;

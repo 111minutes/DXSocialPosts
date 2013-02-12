@@ -34,10 +34,12 @@
     [getFacebookFeedPostsRequest start];
 }
 
-+ (void)getTwitterTimelineForUser:(NSString *)aUser withCallbackBlock:(DXSocialPostsCallbackBlock)aCallbackBlock
++ (void)getTwitterTimelineRequestForUser:(NSString *)aUser withRetweets:(BOOL)aWithReetweets tweetsCount:(NSInteger)aTweetsCount finishCallbackBlock:(DXSocialPostsCallbackBlock)aCallbackBlock
 {
     DXDALRequest *getTwitterTimelineRequest = [self getTwitterTimelineRequestForUser:aUser
-                                                               responseFormat:ResponseFormats.json];
+                                                                        withRetweets:aWithReetweets
+                                                                         tweetsCount:aTweetsCount
+                                                                      responseFormat:ResponseFormats.json];
     
     [getTwitterTimelineRequest addSuccessHandler:^(id response) {
         if (aCallbackBlock) {
@@ -87,11 +89,13 @@
     return getFacebookFeedPostsRequest;
 }
 
-+ (DXDALRequest *)getTwitterTimelineRequestForUser:(NSString *)aUser responseFormat:(NSString *)aResponseFormat
++ (DXDALRequest *)getTwitterTimelineRequestForUser:(NSString *)aUser withRetweets:(BOOL)aWithReetweets tweetsCount:(NSInteger)aTweetsCount responseFormat:(NSString *)aResponseFormat
 {
     DXTwitterTimelineRequestFactory *twitterTimelineRequestFactory = [DXTwitterTimelineRequestFactory shared];
     
     DXDALRequest *twitterTimelineRequest = [twitterTimelineRequestFactory getTimelineForUser:aUser
+                                                                                withRetweets:aWithReetweets
+                                                                                 tweetsCount:aTweetsCount
                                                                               responseFormat:aResponseFormat];
     
     return twitterTimelineRequest;

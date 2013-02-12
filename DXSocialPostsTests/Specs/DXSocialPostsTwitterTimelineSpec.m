@@ -10,22 +10,15 @@ SPEC_BEGIN(TwitterTimelineSpec)
 
 describe(@"Twitter API", ^{
     it(@"should get timeline of user", ^{
-        __block id fetchedData = nil;
-        
         NSString *screenName = @"PwrInt";
-        NSString *name = @"Power Integrations";
         
-        __block NSString *receivedName = nil;
+        __block NSString *receivedTweetPost = nil;
         
-        [DXSocialPosts getTwitterTimelineForUser:screenName withCallbackBlock:^(id response) {
-            id firstPost = response[0];
-            id userDictionary = [firstPost objectForKey:@"user"];
-            receivedName = [userDictionary objectForKey:@"name"];
-            
-            fetchedData = response;
+        [DXSocialPosts getTwitterTimelineRequestForUser:screenName withRetweets:NO tweetsCount:5 finishCallbackBlock:^(id response) {
+            receivedTweetPost = [response[0] valueForKey:@"tweetText"];
         }];
         
-        [[expectFutureValue(receivedName) shouldEventuallyBeforeTimingOutAfter(3.0)] equal:name];
+        [[expectFutureValue(receivedTweetPost) shouldEventuallyBeforeTimingOutAfter(3.0)] shouldNotBeNil];
     });
 });
 

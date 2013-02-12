@@ -10,6 +10,6 @@
 
 @interface DXTwitterTimelineRequestFactory : DXDALRequestFactory <DXSingleton>
 
-- (DXDALRequest *)getTimelineForUser:(NSString *)aUser responseFormat:(NSString *)aResponseFormat;
+- (DXDALRequest *)getTimelineForUser:(NSString *)aUser withRetweets:(BOOL)aWithRetweets tweetsCount:(NSInteger)aTweetsCount responseFormat:(NSString *)aResponseFormat;
 
 @end

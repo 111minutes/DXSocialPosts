@@ -8,6 +8,8 @@
 
 #import "DXTwitterTimelineRequestFactory.h"
 
+#import "DXTwitterTweetMapper.h"
+
 @implementation DXTwitterTimelineRequestFactory
 
 - (id <DXDALDataProvider>)getDataProvider
@@ -19,7 +21,7 @@
     return [DXDALRequestHTTP class];
 }
 
-- (DXDALRequest *)getTimelineForUser:(NSString *)aUser responseFormat:(NSString *)aResponseFormat
+- (DXDALRequest *)getTimelineForUser:(NSString *)aUser withRetweets:(BOOL)aWithRetweets tweetsCount:(NSInteger)aTweetsCount responseFormat:(NSString *)aResponseFormat
 {
     return [self buildRequestWithConfigBlock:^(DXDALRequestHTTP *request) {
         
@@ -30,8 +32,11 @@
         request.httpPath = @"1/statuses/user_timeline.json";
         
         request.parser = [DXDALParserJSON new];
+        request.mapper = [DXTwitterTweetMapper new];
         
         [request addParam:aUser withName:@"screen_name"];
+        [request addParam:[NSNumber numberWithBool:aWithRetweets] withName:@"include_rts"];
+        [request addParam:[NSNumber numberWithInteger:aTweetsCount] withName:@"count"];
     }];
 }
 

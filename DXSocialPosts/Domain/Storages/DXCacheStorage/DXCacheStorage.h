@@ -12,4 +12,6 @@
 
 - (NSString *)avatarPathForFacebookUserID:(long long)aUserID;
 
+- (NSString *)saveTwitterImageDataToCache:(id)aImageData withName:(NSString *)aName;
+
 @end

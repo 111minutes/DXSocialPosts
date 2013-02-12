@@ -43,5 +43,6 @@ const struct FacebookAvatarTypes FacebookAvatarTypes =
 
 const struct Paths Paths =
 {
-    .facebookImagesDir = @"FacebookImages"
+    .facebookImagesDir = @"FacebookImages",
+    .twitterUserAvatarsDir = @"TwitterUserAvatars",
 };

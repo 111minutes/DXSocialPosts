@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4A78B401524A411BB644554C /* libPods-DXSocialPostsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1669AFA3EE7D48348F066A2B /* libPods-DXSocialPostsTests.a */; };
+		EA092D8016CADBAD00B3F7D8 /* TwitterTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = EA092D7F16CADBAD00B3F7D8 /* TwitterTweet.m */; };
+		EA092D8416CADC4100B3F7D8 /* DXTwitterTweetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA092D8316CADC4100B3F7D8 /* DXTwitterTweetMapper.m */; };
 		EA3440E516C84D5000259740 /* DXSocialPostsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3440E416C84D5000259740 /* DXSocialPostsParser.m */; };
 		EA4CCE2916C9368A008D4524 /* DXCacheStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CCE2816C9368A008D4524 /* DXCacheStorage.m */; };
 		EA4CCE2D16C93722008D4524 /* DXDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CCE2C16C93722008D4524 /* DXDownloader.m */; };
@@ -60,6 +62,10 @@
 		74E116B3A6D049FDACE68D27 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		8FC5768EF6474E2D88C61609 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		AFA283F1A7F44CD4A8A48C90 /* Pods-DXSocialPostsTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DXSocialPostsTests.xcconfig"; path = "Pods/Pods-DXSocialPostsTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		EA092D7E16CADBAD00B3F7D8 /* TwitterTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterTweet.h; sourceTree = "<group>"; };
+		EA092D7F16CADBAD00B3F7D8 /* TwitterTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterTweet.m; sourceTree = "<group>"; };
+		EA092D8216CADC4100B3F7D8 /* DXTwitterTweetMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXTwitterTweetMapper.h; sourceTree = "<group>"; };
+		EA092D8316CADC4100B3F7D8 /* DXTwitterTweetMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXTwitterTweetMapper.m; sourceTree = "<group>"; };
 		EA3440E316C84D5000259740 /* DXSocialPostsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXSocialPostsParser.h; sourceTree = "<group>"; };
 		EA3440E416C84D5000259740 /* DXSocialPostsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSocialPostsParser.m; sourceTree = "<group>"; };
 		EA4CCE2716C9368A008D4524 /* DXCacheStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXCacheStorage.h; sourceTree = "<group>"; };
@@ -120,6 +126,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA092D7D16CADBA000B3F7D8 /* TwitterTweet */ = {
+			isa = PBXGroup;
+			children = (
+				EA092D7E16CADBAD00B3F7D8 /* TwitterTweet.h */,
+				EA092D7F16CADBAD00B3F7D8 /* TwitterTweet.m */,
+			);
+			path = TwitterTweet;
+			sourceTree = "<group>";
+		};
+		EA092D8116CADC3200B3F7D8 /* DXTwitterTweetMapper */ = {
+			isa = PBXGroup;
+			children = (
+				EA092D8216CADC4100B3F7D8 /* DXTwitterTweetMapper.h */,
+				EA092D8316CADC4100B3F7D8 /* DXTwitterTweetMapper.m */,
+			);
+			path = DXTwitterTweetMapper;
+			sourceTree = "<group>";
+		};
 		EA3440E216C84D3A00259740 /* DXSocialPostsParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +182,7 @@
 		EA74F6DD16C7EE5A006D073E /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
+				EA092D8116CADC3200B3F7D8 /* DXTwitterTweetMapper */,
 				EA74F6DE16C7EE6A006D073E /* DXFacebookPostsMapper */,
 			);
 			path = Mappers;
@@ -343,6 +368,7 @@
 		EAE12D1416C7ECF0008C6658 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EA092D7D16CADBA000B3F7D8 /* TwitterTweet */,
 				EAE12D1D16C7ED55008C6658 /* FacebookPost */,
 			);
 			path = Models;
@@ -556,6 +582,8 @@
 				EA3440E516C84D5000259740 /* DXSocialPostsParser.m in Sources */,
 				EA4CCE2916C9368A008D4524 /* DXCacheStorage.m in Sources */,
 				EA4CCE2D16C93722008D4524 /* DXDownloader.m in Sources */,
+				EA092D8016CADBAD00B3F7D8 /* TwitterTweet.m in Sources */,
+				EA092D8416CADC4100B3F7D8 /* DXTwitterTweetMapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
