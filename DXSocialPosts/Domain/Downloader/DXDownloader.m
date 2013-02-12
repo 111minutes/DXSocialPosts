@@ -42,4 +42,13 @@
     [self downloadObjectAtURLPath:imageURLString finishCallbackBlock:aFinishCallbackBlock];
 }
 
++ (void)downloadTwitterUserAvatarByScreenName:(NSString *)aScreenName avatarSize:(NSString *)aAvatarSize finishCallbackBlock:(void(^)(id aObject))aFinishCallbackBlock
+{
+    NSString *imageURLString = [ServicesURL.twitterApiURL stringByAppendingFormat:@"/1/users/profile_image?screen_name=%@&size=%@",
+                      aScreenName, aAvatarSize];
+    
+    [self downloadObjectAtURLPath:imageURLString finishCallbackBlock:aFinishCallbackBlock];
+    
+}
+
 @end

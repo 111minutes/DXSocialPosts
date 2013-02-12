@@ -12,8 +12,8 @@
 
 - (NSString *)description
 {
-    NSString *description = [NSString stringWithFormat:@"tweetDate = %@\ntweetText = %@\nuserAvatarURL = %@\nlocalUserAvatarPath = %@",
-                             self.tweetDate, self.tweetText, self.userAvatarURL, self.localUserAvatarPath];
+    NSString *description = [NSString stringWithFormat:@"userScreenName =%@\ntweetDate = %@\ntweetText = %@\nlocalUserAvatarPath = %@",
+                             self.userScreenName, self.tweetDate, self.tweetText, self.localUserAvatarPath];
     
     return description;
 }

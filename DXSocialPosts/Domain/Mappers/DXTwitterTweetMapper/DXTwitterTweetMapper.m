@@ -27,9 +27,9 @@
         
         tweet.tweetDate = [self dateFromString:tweetDateString];
         tweet.tweetText = [tweetDict valueForKey:@"text"];
-        tweet.userAvatarURL = [twitterUserDict valueForKey:@"profile_image_url"];
+        tweet.userScreenName = [twitterUserDict valueForKey:@"screen_name"];
         
-        [self mapUserAvatarToModel:tweet];
+        [self mapUserAvatarToModel:tweet withSize:TwitterAvatarSizes.bigger];
         
         [tweetsArray addObject:tweet];
     }
@@ -42,13 +42,12 @@
    return [[DXDateFormatter shared] dateFromString:aString dateFormat:@"EEE MMM d HH:mm:ss Z y"];
 }
 
-- (void)mapUserAvatarToModel:(TwitterTweet *)aModel
+- (void)mapUserAvatarToModel:(TwitterTweet *)aModel withSize:(NSString *)aSize
 {
-    if (aModel.userAvatarURL) {
-        [DXDownloader downloadObjectAtURLPath:aModel.userAvatarURL finishCallbackBlock:^(id aObject) {
-           aModel.localUserAvatarPath = [[DXCacheStorage shared] saveTwitterImageDataToCache:aObject withName:aModel.userAvatarURL.lastPathComponent];
-        }];
-    }
+    [DXDownloader downloadTwitterUserAvatarByScreenName:aModel.userScreenName avatarSize:aSize finishCallbackBlock:^(id aObject) {
+        NSString *avatarName = [NSString stringWithFormat:@"%@_%@", aModel.userScreenName, aSize];
+        aModel.localUserAvatarPath = [[DXCacheStorage shared] saveTwitterImageDataToCache:aObject withName:avatarName];
+    }];
 }
 
 @end

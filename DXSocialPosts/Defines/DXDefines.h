@@ -41,6 +41,13 @@ const struct FacebookAvatarTypes
     __unsafe_unretained NSString *square;
 } FacebookAvatarTypes;
 
+const struct TwitterAvatarSizes
+{
+    __unsafe_unretained NSString *bigger;
+    __unsafe_unretained NSString *normal;
+    __unsafe_unretained NSString *small;
+} TwitterAvatarSizes;
+
 const struct Paths
 {
     __unsafe_unretained NSString *facebookImagesDir;
