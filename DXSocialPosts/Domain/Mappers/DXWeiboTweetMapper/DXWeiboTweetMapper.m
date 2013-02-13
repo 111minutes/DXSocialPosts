@@ -47,10 +47,8 @@
 
 - (void)downloadAvatarAtPath:(NSString *)aAvatarPath saveWithAvatarName:(NSString *)aName mapToModel:(WeiboTweet *)aModel
 {
-    __weak typeof(aModel) weakModel;
-    
     [DXDownloader downloadObjectAtURLPath:aAvatarPath finishCallbackBlock:^(id aObject) {
-        weakModel.localUserAvatarPath = [[DXCacheStorage shared] saveWeiboImageDataToCache:aObject withName:aName];
+        aModel.localUserAvatarPath = [[DXCacheStorage shared] saveWeiboImageDataToCache:aObject withName:aName];
     }];
 }
 
