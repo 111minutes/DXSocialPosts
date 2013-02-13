@@ -56,9 +56,10 @@
     [getTwitterTimelineRequest start];
 }
 
-+ (void)getWeiboTimelineForUserID:(long long)aUserID withCallbackBlock:(DXSocialPostsCallbackBlock)aCallbackBlock
++ (void)getWeiboTimelineForUserID:(long long)aUserID tweetsCount:(NSInteger)aTweetsCount withCallbackBlock:(DXSocialPostsCallbackBlock)aCallbackBlock
 {
     DXDALRequest *getWeiboTimelineRequest = [self getWeiboTimelineRequestForUserID:aUserID
+                                                                       tweetsCount:aTweetsCount
                                                                     responseFormat:ResponseFormats.json
                                                                             appKey:AppKeys.weiboAppKey];
     
@@ -101,11 +102,12 @@
     return twitterTimelineRequest;
 }
 
-+ (DXDALRequest *)getWeiboTimelineRequestForUserID:(long long)aUserID responseFormat:(NSString *)aResponseFormat appKey:(NSUInteger)aAppKey
++ (DXDALRequest *)getWeiboTimelineRequestForUserID:(long long)aUserID tweetsCount:(NSInteger)aTweetsCount responseFormat:(NSString *)aResponseFormat appKey:(NSUInteger)aAppKey
 {
     DXWeiboTimelineRequestFactory *weiboTimelineRequestFactory = [DXWeiboTimelineRequestFactory shared];
     
     DXDALRequest *weiboTimelineRequest = [weiboTimelineRequestFactory getTimelineForUserID:aUserID
+                                                                               tweetsCount:aTweetsCount
                                                                             responseFormat:aResponseFormat
                                                                                     appKey:aAppKey];
     

@@ -8,9 +8,11 @@
 
 #import "DXCacheStorage.h"
 
+#import <DXFileManager.h>
+
 @interface DXCacheStorage ()
 
-@property (nonatomic, strong) NSFileManager *fileManager;
+@property (nonatomic, strong) DXFileManager *fileManager;
 @property (nonatomic, strong) NSString *cacheDirectory;
 
 @property (nonatomic, strong) NSString *facebookAvatarsCacheDirectory;
@@ -25,8 +27,8 @@
 {
     self = [super init];
     if (self) {
-        self.fileManager = [NSFileManager defaultManager];
-        self.cacheDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        self.fileManager = [DXFileManager shared];
+        self.cacheDirectory = [self.fileManager pathToDocumentsDirectory];
         
         self.facebookAvatarsCacheDirectory = [self.cacheDirectory stringByAppendingPathComponent:Paths.facebookImagesDir];
         self.twitterAvatarsCacheDirectory = [self.cacheDirectory stringByAppendingPathComponent:Paths.twitterUserAvatarsDir];

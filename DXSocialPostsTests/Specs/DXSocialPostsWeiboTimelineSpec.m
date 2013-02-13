@@ -17,7 +17,7 @@ describe(@"Weibo API", ^{
         
         __block NSString *receivedName = nil;
         
-        [DXSocialPosts getWeiboTimelineForUserID:userID withCallbackBlock:^(id response) {
+        [DXSocialPosts getWeiboTimelineForUserID:userID tweetsCount:5 withCallbackBlock:^(id response) {
             receivedName = [response[0] valueForKey:@"userScreenName"];
         }];
         

@@ -22,7 +22,7 @@
     return [DXDALRequestHTTP class];
 }
 
-- (DXDALRequest *)getTimelineForUserID:(long long)aUserID responseFormat:(NSString *)aResponseFormat appKey:(NSUInteger)aAppKey
+- (DXDALRequest *)getTimelineForUserID:(long long)aUserID tweetsCount:(NSInteger)aTweetsCount responseFormat:(NSString *)aResponseFormat appKey:(NSUInteger)aAppKey
 {
     return [self buildRequestWithConfigBlock:^(DXDALRequestHTTP *request) {
         
@@ -38,7 +38,8 @@
         request.mapper = [DXWeiboTweetMapper new];
         request.entityClass = [WeiboTweet class];
         
-        [request addParam:[NSNumber numberWithUnsignedInteger:aAppKey] withName:@"source"];
+        [request addParam:@(aAppKey) withName:@"source"];
+        [request addParam:@(aTweetsCount) withName:@"count"];
     }];
 }
 

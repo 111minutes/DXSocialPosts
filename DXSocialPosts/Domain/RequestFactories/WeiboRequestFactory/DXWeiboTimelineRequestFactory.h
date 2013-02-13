@@ -10,6 +10,6 @@
 
 @interface DXWeiboTimelineRequestFactory : DXDALRequestFactory <DXSingleton>
 
-- (DXDALRequest *)getTimelineForUserID:(long long)aUserID responseFormat:(NSString *)aResponseFormat appKey:(NSUInteger)aAppKey;
+- (DXDALRequest *)getTimelineForUserID:(long long)aUserID tweetsCount:(NSInteger)aTweetsCount responseFormat:(NSString *)aResponseFormat appKey:(NSUInteger)aAppKey;
 
 @end

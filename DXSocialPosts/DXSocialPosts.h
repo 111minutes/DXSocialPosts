@@ -16,6 +16,6 @@ typedef void(^DXSocialPostsCallbackBlock)(id response);
 
 + (void)getTwitterTimelineRequestForUser:(NSString *)aUser withRetweets:(BOOL)aWithReetweets tweetsCount:(NSInteger)aTweetsCount finishCallbackBlock:(DXSocialPostsCallbackBlock)aCallbackBlock;
 
-+ (void)getWeiboTimelineForUserID:(long long)aUserID withCallbackBlock:(DXSocialPostsCallbackBlock)aCallbackBlock;
++ (void)getWeiboTimelineForUserID:(long long)aUserID tweetsCount:(NSInteger)aTweetsCount withCallbackBlock:(DXSocialPostsCallbackBlock)aCallbackBlock;
 
 @end
