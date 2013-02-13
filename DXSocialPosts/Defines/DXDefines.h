@@ -48,8 +48,16 @@ const struct TwitterAvatarSizes
     __unsafe_unretained NSString *small;
 } TwitterAvatarSizes;
 
+const struct WeiboAvatarSizes
+{
+    __unsafe_unretained NSString *large;
+    __unsafe_unretained NSString *normal;
+    __unsafe_unretained NSString *small;
+} WeiboAvatarSizes;
+
 const struct Paths
 {
     __unsafe_unretained NSString *facebookImagesDir;
     __unsafe_unretained NSString *twitterUserAvatarsDir;
+    __unsafe_unretained NSString *weiboUserAvatarDir;
 } Paths;

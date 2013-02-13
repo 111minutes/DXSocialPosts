@@ -27,14 +27,22 @@
         
         tweet.tweetDate = [self dateFromString:tweetDateString];
         tweet.tweetText = [tweetDict valueForKey:@"text"];
-        tweet.userScreenName = [twitterUserDict valueForKey:@"screen_name"];
         
-        [self mapUserAvatarToModel:tweet withSize:TwitterAvatarSizes.bigger];
+        tweet.userID = [twitterUserDict valueForKey:@"id"];
+        tweet.userScreenName = [twitterUserDict valueForKey:@"screen_name"];
+        tweet.userAvatarURL = [twitterUserDict valueForKey:@"profile_image_url"];
+        
+        [self additionalMappingToModel:tweet];
         
         [tweetsArray addObject:tweet];
     }
     
     return tweetsArray;
+}
+
+- (void)additionalMappingToModel:(id)aModel
+{
+    [self mapUserAvatarToModel:aModel withSize:TwitterAvatarSizes.bigger];
 }
 
 - (NSDate *)dateFromString:(NSString *)aString

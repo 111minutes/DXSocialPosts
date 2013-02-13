@@ -11,6 +11,8 @@
 		EA092D8016CADBAD00B3F7D8 /* TwitterTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = EA092D7F16CADBAD00B3F7D8 /* TwitterTweet.m */; };
 		EA092D8416CADC4100B3F7D8 /* DXTwitterTweetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA092D8316CADC4100B3F7D8 /* DXTwitterTweetMapper.m */; };
 		EA3440E516C84D5000259740 /* DXSocialPostsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3440E416C84D5000259740 /* DXSocialPostsParser.m */; };
+		EA3B6F0516CB805300C0E5FF /* WeiboTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3B6F0416CB805300C0E5FF /* WeiboTweet.m */; };
+		EA3B6F0916CB814600C0E5FF /* DXWeiboTweetMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3B6F0816CB814600C0E5FF /* DXWeiboTweetMapper.m */; };
 		EA4CCE2916C9368A008D4524 /* DXCacheStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CCE2816C9368A008D4524 /* DXCacheStorage.m */; };
 		EA4CCE2D16C93722008D4524 /* DXDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4CCE2C16C93722008D4524 /* DXDownloader.m */; };
 		EA74F6E116C7EE73006D073E /* DXFacebookPostsMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = EA74F6E016C7EE73006D073E /* DXFacebookPostsMapper.m */; };
@@ -68,6 +70,10 @@
 		EA092D8316CADC4100B3F7D8 /* DXTwitterTweetMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXTwitterTweetMapper.m; sourceTree = "<group>"; };
 		EA3440E316C84D5000259740 /* DXSocialPostsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXSocialPostsParser.h; sourceTree = "<group>"; };
 		EA3440E416C84D5000259740 /* DXSocialPostsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSocialPostsParser.m; sourceTree = "<group>"; };
+		EA3B6F0316CB805300C0E5FF /* WeiboTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboTweet.h; sourceTree = "<group>"; };
+		EA3B6F0416CB805300C0E5FF /* WeiboTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboTweet.m; sourceTree = "<group>"; };
+		EA3B6F0716CB814600C0E5FF /* DXWeiboTweetMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXWeiboTweetMapper.h; sourceTree = "<group>"; };
+		EA3B6F0816CB814600C0E5FF /* DXWeiboTweetMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXWeiboTweetMapper.m; sourceTree = "<group>"; };
 		EA4CCE2716C9368A008D4524 /* DXCacheStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXCacheStorage.h; sourceTree = "<group>"; };
 		EA4CCE2816C9368A008D4524 /* DXCacheStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXCacheStorage.m; sourceTree = "<group>"; };
 		EA4CCE2B16C93722008D4524 /* DXDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXDownloader.h; sourceTree = "<group>"; };
@@ -153,6 +159,24 @@
 			path = DXSocialPostsParser;
 			sourceTree = "<group>";
 		};
+		EA3B6F0216CB7EC400C0E5FF /* WeiboTweet */ = {
+			isa = PBXGroup;
+			children = (
+				EA3B6F0316CB805300C0E5FF /* WeiboTweet.h */,
+				EA3B6F0416CB805300C0E5FF /* WeiboTweet.m */,
+			);
+			path = WeiboTweet;
+			sourceTree = "<group>";
+		};
+		EA3B6F0616CB813600C0E5FF /* DXWeiboTweetMapper */ = {
+			isa = PBXGroup;
+			children = (
+				EA3B6F0716CB814600C0E5FF /* DXWeiboTweetMapper.h */,
+				EA3B6F0816CB814600C0E5FF /* DXWeiboTweetMapper.m */,
+			);
+			path = DXWeiboTweetMapper;
+			sourceTree = "<group>";
+		};
 		EA4CCE2516C93676008D4524 /* Storages */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +206,7 @@
 		EA74F6DD16C7EE5A006D073E /* Mappers */ = {
 			isa = PBXGroup;
 			children = (
+				EA3B6F0616CB813600C0E5FF /* DXWeiboTweetMapper */,
 				EA092D8116CADC3200B3F7D8 /* DXTwitterTweetMapper */,
 				EA74F6DE16C7EE6A006D073E /* DXFacebookPostsMapper */,
 			);
@@ -368,6 +393,7 @@
 		EAE12D1416C7ECF0008C6658 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EA3B6F0216CB7EC400C0E5FF /* WeiboTweet */,
 				EA092D7D16CADBA000B3F7D8 /* TwitterTweet */,
 				EAE12D1D16C7ED55008C6658 /* FacebookPost */,
 			);
@@ -584,6 +610,8 @@
 				EA4CCE2D16C93722008D4524 /* DXDownloader.m in Sources */,
 				EA092D8016CADBAD00B3F7D8 /* TwitterTweet.m in Sources */,
 				EA092D8416CADC4100B3F7D8 /* DXTwitterTweetMapper.m in Sources */,
+				EA3B6F0516CB805300C0E5FF /* WeiboTweet.m in Sources */,
+				EA3B6F0916CB814600C0E5FF /* DXWeiboTweetMapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

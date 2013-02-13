@@ -6,8 +6,11 @@
 //  Copyright (c) 2013 TheSooth. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "DXDownloader.h"
+#import "DXCacheStorage.h"
 
 @interface DXTwitterTweetMapper : NSObject <DXDALMapper>
+
+- (void)additionalMappingToModel:(id)aModel;
 
 @end

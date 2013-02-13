@@ -8,10 +8,10 @@
 
 @interface DXCacheStorage : NSObject <DXSingleton>
 
-- (NSString *)saveFacebookImageDataCache:(id)aImageData withName:(NSString *)aName;
-
 - (NSString *)avatarPathForFacebookUserID:(long long)aUserID;
 
+- (NSString *)saveFacebookImageDataCache:(id)aImageData withName:(NSString *)aName;
 - (NSString *)saveTwitterImageDataToCache:(id)aImageData withName:(NSString *)aName;
+- (NSString *)saveWeiboImageDataToCache:(id)aImageData withName:(NSString *)aName;
 
 @end

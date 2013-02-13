@@ -10,12 +10,12 @@
 
 @interface TwitterTweet : NSObject
 
-@property (nonatomic, strong) NSString *userScreenName;
-
 @property (nonatomic, strong) NSDate *tweetDate;
-
 @property (nonatomic, strong) NSString *tweetText;
 
+@property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *userScreenName;
+@property (nonatomic, strong) NSString *userAvatarURL;
 @property (nonatomic, strong) NSString *localUserAvatarPath;
 
 @end

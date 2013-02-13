@@ -48,8 +48,15 @@ const struct TwitterAvatarSizes TwitterAvatarSizes =
     .small = @"small"
 };
 
+const struct WeiboAvatarSizes WeiboAvatarSizes =
+{
+    .large = @"180",
+    .small = @"50"
+};
+
 const struct Paths Paths =
 {
     .facebookImagesDir = @"FacebookImages",
     .twitterUserAvatarsDir = @"TwitterUserAvatars",
+    .weiboUserAvatarDir = @"WeiboUserAvatars"
 };

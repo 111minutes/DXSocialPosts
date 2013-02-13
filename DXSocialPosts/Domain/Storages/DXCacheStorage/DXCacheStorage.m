@@ -14,7 +14,8 @@
 @property (nonatomic, strong) NSString *cacheDirectory;
 
 @property (nonatomic, strong) NSString *facebookAvatarsCacheDirectory;
-@property (nonatomic, strong) NSString *twitterAvatarsCacheDirectry;
+@property (nonatomic, strong) NSString *twitterAvatarsCacheDirectory;
+@property (nonatomic, strong) NSString *weiboAvatarsCacheDirectory;
 
 @end
 
@@ -26,8 +27,10 @@
     if (self) {
         self.fileManager = [NSFileManager defaultManager];
         self.cacheDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        
         self.facebookAvatarsCacheDirectory = [self.cacheDirectory stringByAppendingPathComponent:Paths.facebookImagesDir];
-        self.twitterAvatarsCacheDirectry = [self.cacheDirectory stringByAppendingPathComponent:Paths.twitterUserAvatarsDir];
+        self.twitterAvatarsCacheDirectory = [self.cacheDirectory stringByAppendingPathComponent:Paths.twitterUserAvatarsDir];
+        self.weiboAvatarsCacheDirectory = [self.cacheDirectory stringByAppendingPathComponent:Paths.weiboUserAvatarDir];
     }
     
     return self;
@@ -53,7 +56,14 @@
 
 - (NSString *)saveTwitterImageDataToCache:(id)aImageData withName:(NSString *)aName
 {
-    NSString *filePath = [self saveObject:aImageData atPath:self.twitterAvatarsCacheDirectry withName:aName];
+    NSString *filePath = [self saveObject:aImageData atPath:self.twitterAvatarsCacheDirectory withName:aName];
+    
+    return filePath;
+}
+
+- (NSString *)saveWeiboImageDataToCache:(id)aImageData withName:(NSString *)aName
+{
+    NSString *filePath = [self saveObject:aImageData atPath:self.weiboAvatarsCacheDirectory withName:aName];
     
     return filePath;
 }
