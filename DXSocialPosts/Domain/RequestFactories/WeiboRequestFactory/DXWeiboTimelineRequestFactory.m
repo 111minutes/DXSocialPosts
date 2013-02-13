@@ -9,6 +9,8 @@
 #import "DXWeiboTimelineRequestFactory.h"
 #import "DXWeiboTweetMapper.h"
 
+#import "WeiboTweet.h"
+
 @implementation DXWeiboTimelineRequestFactory
 
 - (id <DXDALDataProvider>)getDataProvider
@@ -34,6 +36,7 @@
         
         request.parser = [DXDALParserJSON new];
         request.mapper = [DXWeiboTweetMapper new];
+        request.entityClass = [WeiboTweet class];
         
         [request addParam:[NSNumber numberWithUnsignedInteger:aAppKey] withName:@"source"];
     }];

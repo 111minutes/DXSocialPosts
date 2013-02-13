@@ -10,4 +10,8 @@
 
 @interface WeiboTweet : TwitterTweet
 
+@property (nonatomic, strong) NSString *tweetThumbnailPicURL;
+@property (nonatomic, strong) NSString *tweetOriginalPicURL;
+@property (nonatomic, strong) NSString *tweetMiddlePicURL;
+
 @end

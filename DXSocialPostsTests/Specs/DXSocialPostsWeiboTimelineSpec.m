@@ -10,7 +10,6 @@ SPEC_BEGIN(WeiboTimelineSpec)
 
 describe(@"Weibo API", ^{
     it(@"should get timeline of user", ^{
-        __block id fetchedData = nil;
         
         NSUInteger userID = 2517184481;
         
@@ -19,11 +18,7 @@ describe(@"Weibo API", ^{
         __block NSString *receivedName = nil;
         
         [DXSocialPosts getWeiboTimelineForUserID:userID withCallbackBlock:^(id response) {
-            id firstPost = response[0];
-            id userDictionary = [firstPost objectForKey:@"user"];
-            receivedName = [userDictionary objectForKey:@"name"];
-            
-            fetchedData = response;
+            receivedName = [response[0] valueForKey:@"userScreenName"];
         }];
         
         [[expectFutureValue(receivedName) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:name];

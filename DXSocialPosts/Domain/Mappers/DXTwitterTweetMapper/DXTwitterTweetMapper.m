@@ -20,17 +20,17 @@
     NSMutableArray *tweetsArray = [NSMutableArray new];
     
     for (NSDictionary *tweetDict in inputData) {
-        TwitterTweet *tweet = [TwitterTweet new];
+        id tweet = [mappingClass new];
         
         NSString *tweetDateString = [tweetDict valueForKey:@"created_at"];
         NSDictionary *twitterUserDict = [tweetDict valueForKey:@"user"];
         
-        tweet.tweetDate = [self dateFromString:tweetDateString];
-        tweet.tweetText = [tweetDict valueForKey:@"text"];
+        [tweet setValue:[self dateFromString:tweetDateString] forKey:@"tweetDate"];
+        [tweet setValue:[tweetDict valueForKey:@"text"] forKey:@"tweetText"];
         
-        tweet.userID = [twitterUserDict valueForKey:@"id"];
-        tweet.userScreenName = [twitterUserDict valueForKey:@"screen_name"];
-        tweet.userAvatarURL = [twitterUserDict valueForKey:@"profile_image_url"];
+        [tweet setValue:[twitterUserDict valueForKey:@"id"] forKey:@"userID"];
+        [tweet setValue:[twitterUserDict valueForKey:@"screen_name"] forKey:@"userScreenName"];
+        [tweet setValue:[twitterUserDict valueForKey:@"profile_image_url"] forKey:@"userAvatarURL"];
         
         [self additionalMappingToModel:tweet];
         

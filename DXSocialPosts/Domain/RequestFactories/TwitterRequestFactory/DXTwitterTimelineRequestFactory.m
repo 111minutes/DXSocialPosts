@@ -7,8 +7,9 @@
 //
 
 #import "DXTwitterTimelineRequestFactory.h"
-
 #import "DXTwitterTweetMapper.h"
+
+#import "TwitterTweet.h"
 
 @implementation DXTwitterTimelineRequestFactory
 
@@ -33,6 +34,7 @@
         
         request.parser = [DXDALParserJSON new];
         request.mapper = [DXTwitterTweetMapper new];
+        request.entityClass = [TwitterTweet class];
         
         [request addParam:aUser withName:@"screen_name"];
         [request addParam:[NSNumber numberWithBool:aWithRetweets] withName:@"include_rts"];
