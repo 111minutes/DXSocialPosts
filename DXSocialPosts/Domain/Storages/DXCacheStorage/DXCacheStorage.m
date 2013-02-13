@@ -47,8 +47,27 @@
 {
     NSString *filePath = [self.facebookAvatarsCacheDirectory stringByAppendingFormat:@"/%llu", aUserID];
     
-    if ([self.fileManager fileExistsAtPath:filePath]) {
-        return filePath;
+    return [self fileExistsAtPath:filePath];
+}
+
+- (NSString *)avatarPathForTwitterWithName:(NSString *)aName
+{
+    NSString *filePath = [self.twitterAvatarsCacheDirectory stringByAppendingPathComponent:aName];
+    
+    return [self fileExistsAtPath:filePath];
+}
+
+- (NSString *)avatarPathForWeiboWithName:(NSString *)aName
+{
+    NSString *filePath = [self.weiboAvatarsCacheDirectory stringByAppendingPathComponent:aName];
+    
+    return [self fileExistsAtPath:filePath];
+}
+
+- (NSString *)fileExistsAtPath:(NSString *)aPath
+{
+    if ([self.fileManager fileExistsAtPath:aPath]) {
+        return aPath;
     }
     
     return nil;

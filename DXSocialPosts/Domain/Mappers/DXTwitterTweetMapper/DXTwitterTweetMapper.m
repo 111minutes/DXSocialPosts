@@ -52,10 +52,17 @@
 
 - (void)mapUserAvatarToModel:(TwitterTweet *)aModel withSize:(NSString *)aSize
 {
-    [DXDownloader downloadTwitterUserAvatarByScreenName:aModel.userScreenName avatarSize:aSize finishCallbackBlock:^(id aObject) {
-        NSString *avatarName = [NSString stringWithFormat:@"%@_%@", aModel.userScreenName, aSize];
-        aModel.localUserAvatarPath = [[DXCacheStorage shared] saveTwitterImageDataToCache:aObject withName:avatarName];
-    }];
+    NSString *avatarName = [NSString stringWithFormat:@"%@_%@", aModel.userScreenName, aSize];
+    
+    NSString *avatarPath = [[DXCacheStorage shared] avatarPathForTwitterWithName:avatarName];
+    
+    if (avatarPath) {
+        aModel.localUserAvatarPath = avatarPath;
+    } else {
+        [DXDownloader downloadTwitterUserAvatarByScreenName:aModel.userScreenName avatarSize:aSize finishCallbackBlock:^(id aObject) {
+            aModel.localUserAvatarPath = [[DXCacheStorage shared] saveTwitterImageDataToCache:aObject withName:avatarName];
+        }];
+    }
 }
 
 @end

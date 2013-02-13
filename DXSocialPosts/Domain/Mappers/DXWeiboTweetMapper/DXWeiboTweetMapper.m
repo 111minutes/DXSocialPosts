@@ -19,20 +19,38 @@
     [self mapUserAvatarToModel:aModel withSize:WeiboAvatarSizes.large];
 }
 
-
 - (void)mapUserAvatarToModel:(WeiboTweet *)aModel withSize:(NSString *)aSize
 {
-    __weak typeof(aModel) weakModel = aModel;
     
+    NSString *avatarName = [NSString stringWithFormat:@"%@_%@", aModel.userScreenName, aSize];
+    
+    NSString *avatarPath = [[DXCacheStorage shared] avatarPathForWeiboWithName:avatarName];
+    
+    if (avatarPath) {
+        aModel.localUserAvatarPath = avatarPath;
+    } else {
+        NSString *avatarURLString = [self buildAvatarURLFromModel:aModel avatarSize:aSize];
+        
+        [self downloadAvatarAtPath:avatarURLString saveWithAvatarName:avatarName mapToModel:aModel];
+    }
+}
+
+- (NSString *)buildAvatarURLFromModel:(WeiboTweet *)aModel avatarSize:(NSString *)aAvatarSize
+{
     NSMutableArray *avatarPathsComponents = [[aModel.userAvatarURL pathComponents] mutableCopy];
-    [avatarPathsComponents setObject:aSize atIndexedSubscript:avatarSizePathComponentIndex];
+    [avatarPathsComponents setObject:aAvatarSize atIndexedSubscript:avatarSizePathComponentIndex];
     
     NSString *avatarURL = [avatarPathsComponents componentsJoinedByString:@"//"];
     
+    return avatarURL;
+}
+
+- (void)downloadAvatarAtPath:(NSString *)aAvatarPath saveWithAvatarName:(NSString *)aName mapToModel:(WeiboTweet *)aModel
+{
+    __weak typeof(aModel) weakModel;
     
-    [DXDownloader downloadObjectAtURLPath:avatarURL finishCallbackBlock:^(id aObject) {
-        NSString *avatarName = [NSString stringWithFormat:@"%@_%@", weakModel.userScreenName, aSize];
-        weakModel.localUserAvatarPath = [[DXCacheStorage shared] saveWeiboImageDataToCache:aObject withName:avatarName];
+    [DXDownloader downloadObjectAtURLPath:aAvatarPath finishCallbackBlock:^(id aObject) {
+        weakModel.localUserAvatarPath = [[DXCacheStorage shared] saveWeiboImageDataToCache:aObject withName:aName];
     }];
 }
 
