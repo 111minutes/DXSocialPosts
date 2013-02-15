@@ -44,10 +44,11 @@
         
         FacebookPost *post = [FacebookPost new];
         
-        post.title = [self titleFromContent:content];
-        post.sharedLink = [self sharedLinkFromContent:content];
-        post.postText = [self postTextFromContent:content];
-        post.imageLink = [self imageURLStringFromContent:content];
+        [self mapTitleFromContent:content toModel:post];
+        
+        [self mapSharedLinkFromContent:content toModel:post];
+        [self mapPostFromContent:content toModel:post];
+        [self mapImageURLFromContent:content toModel:post];
         
         [self mapImageToModel:post];
         
@@ -57,42 +58,42 @@
     return facebookPostsArray;
 }
 
-- (NSString *)titleFromContent:(NSString *)aContent
+- (void)mapTitleFromContent:(NSString *)aContent toModel:(FacebookPost *)aModel
 {
 #warning Need to make a "right" regular pattern
-    NSString *title = [aContent stringByMatchingRegularExpressionPattern:@">+[^<>]+"];
-    
-    return [title stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""];
+    [aContent stringByMatchingRegularExpressionPattern:@">+[^<>]+" finishBlock:^(NSString *string) {
+        aModel.title = [string stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""];
+    }];
 }
 
-- (NSString *)sharedLinkFromContent:(NSString *)aContent
+- (void)mapSharedLinkFromContent:(NSString *)aContent toModel:(FacebookPost *)aModel
 {
-    NSString *encodedURLLink = [aContent stringByMatchingRegularExpressionPattern:@"http%[\\S]+?[^&\\s]+"];
-    
-    NSString *decodedURLLink = [encodedURLLink stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    return decodedURLLink;
+    [aContent stringByMatchingRegularExpressionPattern:@"http%[\\S]+?[^&\\s]+" finishBlock:^(NSString *string) {
+        NSString *decodedURLLink = [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        aModel.sharedLink = decodedURLLink;
+    }];
 }
 
-- (NSString *)postTextFromContent:(NSString *)aContent
+- (void)mapPostFromContent:(NSString *)aContent toModel:(FacebookPost *)aModel
 {
-    NSString *contentText = [aContent stringByMatchingRegularExpressionPattern:@"[^</>]+$"];
-    
-    return contentText;
+    [aContent stringByMatchingRegularExpressionPattern:@"[^</>]+$" finishBlock:^(NSString *string) {
+        aModel.postText = string;
+    }];
 }
 
-- (NSString *)imageURLStringFromContent:(NSString *)aContent
+- (void)mapImageURLFromContent:(NSString *)aContent toModel:(FacebookPost *)aModel
 {
 #warning Need to make a "right" regular pattern
-    NSString *imageURLEncodedLink = [aContent stringByMatchingRegularExpressionPattern:@"(?:url=)+http[^\\s\"]+"];
     
-    if (imageURLEncodedLink) {
-        NSString *imageURLDecodedLink = [imageURLEncodedLink stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
-    
-        return imageURLString;
-    }
-    return nil;
+    [aContent stringByMatchingRegularExpressionPattern:@"?:url=)+http[^\\s\"]+" finishBlock:^(NSString *string) {
+        NSString *imageURLString = nil;
+        if (string) {
+            NSString *imageURLDecodedLink = [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
+        }
+        aModel.imageLink = imageURLString;
+    }];
 }
 
 #pragma mark - 

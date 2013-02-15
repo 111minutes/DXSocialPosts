@@ -10,16 +10,28 @@
 
 @implementation NSString (RegularExpression)
 
-- (NSString *)stringByMatchingRegularExpressionPattern:(NSString *)aRegularExpressionPatterh
+- (void)stringByMatchingRegularExpressionPattern:(NSString *)aRegularExpressionPatterh finishBlock:(void(^)(NSString *string))aFinishBlock
 {
-    NSRange range = [self rangeOfString:aRegularExpressionPatterh options:NSRegularExpressionSearch];
-    NSString *stringWithRegular = nil;
+    NSRegularExpression *regularExpression = [[NSRegularExpression alloc] initWithPattern:aRegularExpressionPatterh options:0 error:nil];
     
-    if (range.location != NSNotFound) {
-        stringWithRegular = [self substringWithRange:range];
-    }
-    
-    return stringWithRegular;
+    [regularExpression enumerateMatchesInString:self
+                                        options:0
+                                          range:NSMakeRange(0, [self length])
+                                     usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                                         NSRange resultRange = [result range];
+                                         
+                                         NSString *stringWithRegular = nil;
+                                         
+                                         if (resultRange.location != NSNotFound) {
+                                             stringWithRegular = [self substringWithRange:resultRange];
+                                             
+                                             if (aFinishBlock) {
+                                                 aFinishBlock(stringWithRegular);
+                                             }
+                                         } else {
+                                             aFinishBlock(nil);
+                                         }
+                                     }];
 }
 
 @end

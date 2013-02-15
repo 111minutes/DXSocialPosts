@@ -10,6 +10,6 @@
 
 @interface NSString (RegularExpression)
 
-- (NSString *)stringByMatchingRegularExpressionPattern:(NSString *)aRegularExpressionPatterh;
+- (void)stringByMatchingRegularExpressionPattern:(NSString *)aRegularExpressionPatterh finishBlock:(void(^)(NSString *string))aFinishBlock;
 
 @end
