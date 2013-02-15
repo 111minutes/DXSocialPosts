@@ -14,24 +14,25 @@
 {
     NSRegularExpression *regularExpression = [[NSRegularExpression alloc] initWithPattern:aRegularExpressionPatterh options:0 error:nil];
     
-    [regularExpression enumerateMatchesInString:self
-                                        options:0
-                                          range:NSMakeRange(0, [self length])
-                                     usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-                                         NSRange resultRange = [result range];
-                                         
-                                         NSString *stringWithRegular = nil;
-                                         
-                                         if (resultRange.location != NSNotFound) {
-                                             stringWithRegular = [self substringWithRange:resultRange];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __block NSString *resultString = nil;
+        
+        [regularExpression enumerateMatchesInString:self
+                                            options:0
+                                              range:NSMakeRange(0, [self length])
+                                         usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+                                             NSRange resultRange = [result range];
                                              
-                                             if (aFinishBlock) {
-                                                 aFinishBlock(stringWithRegular);
+                                             if (resultRange.location != NSNotFound) {
+                                                 resultString = [self substringWithRange:resultRange];
                                              }
-                                         } else {
-                                             aFinishBlock(nil);
-                                         }
-                                     }];
+                                             
+                                         }];
+        if (aFinishBlock) {
+            aFinishBlock(resultString);
+        }
+        
+    });
 }
 
 @end

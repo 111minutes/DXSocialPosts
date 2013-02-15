@@ -45,12 +45,9 @@
         FacebookPost *post = [FacebookPost new];
         
         [self mapTitleFromContent:content toModel:post];
-        
         [self mapSharedLinkFromContent:content toModel:post];
         [self mapPostFromContent:content toModel:post];
         [self mapImageURLFromContent:content toModel:post];
-        
-        [self mapImageToModel:post];
         
         [facebookPostsArray addObject:post];
     }
@@ -86,17 +83,21 @@
 {
 #warning Need to make a "right" regular pattern
     
-    [aContent stringByMatchingRegularExpressionPattern:@"?:url=)+http[^\\s\"]+" finishBlock:^(NSString *string) {
+    [aContent stringByMatchingRegularExpressionPattern:@"(?:url=)+http[^\\s\"]+" finishBlock:^(NSString *string) {
         NSString *imageURLString = nil;
+        
         if (string) {
             NSString *imageURLDecodedLink = [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
         }
+        
         aModel.imageLink = imageURLString;
+        
+        [self mapImageToModel:aModel];
     }];
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma mark - Image mapping
 
 - (void)mapImageToModel:(FacebookPost *)aModel
