@@ -91,45 +91,28 @@
             imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
         }
         
-        aModel.imageLink = imageURLString;
-        
-        [self mapImageToModel:aModel];
+        [self mapImageURL:imageURLString toModel:aModel];
     }];
 }
 
 #pragma mark -
 #pragma mark - Image mapping
 
-- (void)mapImageToModel:(FacebookPost *)aModel
+- (void)mapImageURL:(NSString *)aImageURLString toModel:(FacebookPost *)aModel
 {
-    if (aModel.imageLink) {
-        [self downloadImageAndMapToModel:aModel];
+    if (aImageURLString) {
+        aModel.imageLink = aImageURLString;
     } else {
-        [self mapDefaultUserAvatarToModel:aModel];
+        [self mapDefaultUserAvatarToModel:aModel avatarType:FacebookAvatarTypes.large];
     }
 }
 
-- (void)downloadImageAndMapToModel:(FacebookPost *)aModel
+- (void)mapDefaultUserAvatarToModel:(FacebookPost *)aModel avatarType:(NSString *)aAvatarType
 {
-    [DXDownloader downloadObjectAtURLPath:aModel.imageLink finishCallbackBlock:^(id aObject) {
-        if (![aObject isKindOfClass:[NSError class]]) {
-            aModel.localImagePath = [[DXCacheStorage shared] saveFacebookImageDataCache:aObject
-                                                                               withName:aModel.imageLink.lastPathComponent];
-        }
-    }];
-}
-
-- (void)mapDefaultUserAvatarToModel:(FacebookPost *)aModel
-{
-    NSString *avatarPath = [[DXCacheStorage shared] avatarPathForFacebookUserID:self.facebookUserID];
-    if (avatarPath) {
-        aModel.localImagePath = avatarPath;
-    } else {
-        [DXDownloader downloadFacebookUserAvatarByID:self.facebookUserID avatarType:FacebookAvatarTypes.large finishCallbackBlock:^(id aObject) {
-            aModel.localImagePath = [[DXCacheStorage shared] saveFacebookImageDataCache:aObject
-                                                                               withName:[NSString stringWithFormat:@"%llu", self.facebookUserID]];
-        }];
-    }
+    
+    NSString *imageURLString = [ServicesURL.facebookApiURL stringByAppendingFormat:@"/%llu/picture?type=%@",self.facebookUserID,aAvatarType];
+    
+    aModel.imageLink = imageURLString;
 }
 
 @end

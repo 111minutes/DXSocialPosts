@@ -47,22 +47,14 @@
 
 - (NSDate *)dateFromString:(NSString *)aString
 {
-   return [[DXDateFormatter shared] dateFromString:aString dateFormat:@"EEE MMM d HH:mm:ss Z y"];
+    return [[DXDateFormatter shared] dateFromString:aString dateFormat:@"EEE MMM d HH:mm:ss Z y"];
 }
 
 - (void)mapUserAvatarToModel:(TwitterTweet *)aModel withSize:(NSString *)aSize
 {
-    NSString *avatarName = [NSString stringWithFormat:@"%@_%@", aModel.userScreenName, aSize];
-    
-    NSString *avatarPath = [[DXCacheStorage shared] avatarPathForTwitterWithName:avatarName];
-    
-    if (avatarPath) {
-        aModel.localUserAvatarPath = avatarPath;
-    } else {
-        [DXDownloader downloadTwitterUserAvatarByScreenName:aModel.userScreenName avatarSize:aSize finishCallbackBlock:^(id aObject) {
-            aModel.localUserAvatarPath = [[DXCacheStorage shared] saveTwitterImageDataToCache:aObject withName:avatarName];
-        }];
-    }
+    NSString *imageURLString = [ServicesURL.twitterApiURL stringByAppendingFormat:@"/1/users/profile_image?screen_name=%@&size=%@",
+                                aModel.userScreenName, aSize];
+    aModel.userAvatarURL = imageURLString;
 }
 
 @end
