@@ -32,80 +32,71 @@
     return self;
 }
 
-- (id)mapFromInputData:(id)inputData withClass:(Class)mappingClass
+- (void)mapFromInputData:(id)aData entityClass:(Class)aEntityClass finishCallbackBlock:(void (^)(id))aFinishCallbackBlock
 {
-    NSMutableArray *facebookPostsArray = [NSMutableArray new];
-    
-    NSArray *entries = [inputData objectForKey:@"entries"];
-    
-    for (NSDictionary *postDictionary in entries) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableArray *facebookPostsArray = [NSMutableArray new];
         
-        NSString *content = [postDictionary valueForKey:@"content"];
+        NSArray *entries = [aData objectForKey:@"entries"];
         
-        FacebookPost *post = [FacebookPost new];
+        for (NSDictionary *postDictionary in entries) {
+            
+            NSString *content = [postDictionary valueForKey:@"content"];
+            
+            FacebookPost *post = [FacebookPost new];
+            
+            [self mapTitleFromContent:content toModel:post];
+            [self mapSharedLinkFromContent:content toModel:post];
+            [self mapPostFromContent:content toModel:post];
+            [self mapImageURLFromContent:content toModel:post];
+            
+            [facebookPostsArray addObject:post];
+        }
         
-        [self mapTitleFromContent:content toModel:post];
-        [self mapSharedLinkFromContent:content toModel:post];
-        [self mapPostFromContent:content toModel:post];
-        [self mapImageURLFromContent:content toModel:post];
-        
-        [facebookPostsArray addObject:post];
-    }
-    
-    return facebookPostsArray;
+        if(aFinishCallbackBlock) {
+            aFinishCallbackBlock(facebookPostsArray);
+        }
+    });
 }
 
 - (void)mapTitleFromContent:(NSString *)aContent toModel:(FacebookPost *)aModel
 {
 #warning Need to make a "right" regular pattern
-    [aContent stringByMatchingRegularExpressionPattern:@">+[^<>]+" finishBlock:^(NSString *string) {
-        aModel.title = [string stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""];
-    }];
+    
+    NSString *title = [aContent stringByMatchingRegularExpressionPattern:@">+[^<>]+"];
+    aModel.title = [title stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:@""];
 }
 
 - (void)mapSharedLinkFromContent:(NSString *)aContent toModel:(FacebookPost *)aModel
 {
-    [aContent stringByMatchingRegularExpressionPattern:@"http%[\\S]+?[^&\\s]+" finishBlock:^(NSString *string) {
-        NSString *decodedURLLink = [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *encodedURLLink = [aContent stringByMatchingRegularExpressionPattern:@"http%[\\S]+?[^&\\s]+"];
+    NSString *decodedURLLink = [encodedURLLink stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-        aModel.sharedLink = decodedURLLink;
-    }];
+    aModel.sharedLink = decodedURLLink;
 }
 
 - (void)mapPostFromContent:(NSString *)aContent toModel:(FacebookPost *)aModel
 {
-    [aContent stringByMatchingRegularExpressionPattern:@"[^</>]+$" finishBlock:^(NSString *string) {
-        aModel.postText = string;
-    }];
+    aModel.postText = [aContent stringByMatchingRegularExpressionPattern:@"[^</>]+$"];
 }
 
 - (void)mapImageURLFromContent:(NSString *)aContent toModel:(FacebookPost *)aModel
 {
 #warning Need to make a "right" regular pattern
     
-    [aContent stringByMatchingRegularExpressionPattern:@"(?:url=)+http[^\\s\"]+" finishBlock:^(NSString *string) {
-        NSString *imageURLString = nil;
+    NSString *imageURLString = [aContent stringByMatchingRegularExpressionPattern:@"(?:url=)+http[^\\s\"]+"];
         
-        if (string) {
-            NSString *imageURLDecodedLink = [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        if (imageURLString) {
+            NSString *imageURLDecodedLink = [imageURLString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
+            aModel.imageLink = imageURLString;
+        } else {
+            [self mapDefaultUserAvatarToModel:aModel avatarType:FacebookAvatarTypes.large];
         }
-        
-        [self mapImageURL:imageURLString toModel:aModel];
-    }];
 }
 
 #pragma mark -
 #pragma mark - Image mapping
-
-- (void)mapImageURL:(NSString *)aImageURLString toModel:(FacebookPost *)aModel
-{
-    if (aImageURLString) {
-        aModel.imageLink = aImageURLString;
-    } else {
-        [self mapDefaultUserAvatarToModel:aModel avatarType:FacebookAvatarTypes.large];
-    }
-}
 
 - (void)mapDefaultUserAvatarToModel:(FacebookPost *)aModel avatarType:(NSString *)aAvatarType
 {

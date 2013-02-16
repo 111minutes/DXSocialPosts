@@ -33,6 +33,7 @@
 		EAC11F4816B906FB0031CC88 /* DXWeiboTimelineRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F4716B906FB0031CC88 /* DXWeiboTimelineRequestFactory.m */; };
 		EAC11F4B16B90ACA0031CC88 /* DXSocialPostsWeiboTimelineSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC11F4A16B90ACA0031CC88 /* DXSocialPostsWeiboTimelineSpec.m */; };
 		EAE12D2016C7ED55008C6658 /* FacebookPost.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE12D1F16C7ED55008C6658 /* FacebookPost.m */; };
+		EAED59C616CEE03200237AA0 /* DXSPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAED59C516CEE03200237AA0 /* DXSPRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,8 +106,11 @@
 		EAC11F4616B906FB0031CC88 /* DXWeiboTimelineRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXWeiboTimelineRequestFactory.h; sourceTree = "<group>"; };
 		EAC11F4716B906FB0031CC88 /* DXWeiboTimelineRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXWeiboTimelineRequestFactory.m; sourceTree = "<group>"; };
 		EAC11F4A16B90ACA0031CC88 /* DXSocialPostsWeiboTimelineSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSocialPostsWeiboTimelineSpec.m; sourceTree = "<group>"; };
+		EAD31D6416CEF44E0044924E /* DXSPMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXSPMapper.h; sourceTree = "<group>"; };
 		EAE12D1E16C7ED55008C6658 /* FacebookPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookPost.h; sourceTree = "<group>"; };
 		EAE12D1F16C7ED55008C6658 /* FacebookPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookPost.m; sourceTree = "<group>"; };
+		EAED59C416CEE03200237AA0 /* DXSPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXSPRequest.h; sourceTree = "<group>"; };
+		EAED59C516CEE03200237AA0 /* DXSPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXSPRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +340,8 @@
 		EAC11F3416B8F6B40031CC88 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EAD31D6216CEF44E0044924E /* Protocols */,
+				EAED59C216CEE01700237AA0 /* Requests */,
 				EA4CCE2A16C9370D008D4524 /* Downloader */,
 				EA4CCE2516C93676008D4524 /* Storages */,
 				EA74F6E216C800E1006D073E /* Categories */,
@@ -384,6 +390,22 @@
 			path = WeiboRequestFactory;
 			sourceTree = "<group>";
 		};
+		EAD31D6216CEF44E0044924E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EAD31D6316CEF44E0044924E /* DXSPMapper */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		EAD31D6316CEF44E0044924E /* DXSPMapper */ = {
+			isa = PBXGroup;
+			children = (
+				EAD31D6416CEF44E0044924E /* DXSPMapper.h */,
+			);
+			path = DXSPMapper;
+			sourceTree = "<group>";
+		};
 		EAD89FCE16B97653005751AA /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +431,23 @@
 				EAE12D1F16C7ED55008C6658 /* FacebookPost.m */,
 			);
 			path = FacebookPost;
+			sourceTree = "<group>";
+		};
+		EAED59C216CEE01700237AA0 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				EAED59C316CEE02200237AA0 /* DXSPRequest */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		EAED59C316CEE02200237AA0 /* DXSPRequest */ = {
+			isa = PBXGroup;
+			children = (
+				EAED59C416CEE03200237AA0 /* DXSPRequest.h */,
+				EAED59C516CEE03200237AA0 /* DXSPRequest.m */,
+			);
+			path = DXSPRequest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -629,6 +668,7 @@
 				EA092D8416CADC4100B3F7D8 /* DXTwitterTweetMapper.m in Sources */,
 				EA3B6F0516CB805300C0E5FF /* WeiboTweet.m in Sources */,
 				EA3B6F0916CB814600C0E5FF /* DXWeiboTweetMapper.m in Sources */,
+				EAED59C616CEE03200237AA0 /* DXSPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

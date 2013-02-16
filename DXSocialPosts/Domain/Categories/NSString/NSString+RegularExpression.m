@@ -10,11 +10,10 @@
 
 @implementation NSString (RegularExpression)
 
-- (void)stringByMatchingRegularExpressionPattern:(NSString *)aRegularExpressionPatterh finishBlock:(void(^)(NSString *string))aFinishBlock
+- (NSString *)stringByMatchingRegularExpressionPattern:(NSString *)aRegularExpressionPattern
 {
-    NSRegularExpression *regularExpression = [[NSRegularExpression alloc] initWithPattern:aRegularExpressionPatterh options:0 error:nil];
+    NSRegularExpression *regularExpression = [[NSRegularExpression alloc] initWithPattern:aRegularExpressionPattern options:0 error:nil];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         __block NSString *resultString = nil;
         
         [regularExpression enumerateMatchesInString:self
@@ -28,11 +27,8 @@
                                              }
                                              
                                          }];
-        if (aFinishBlock) {
-            aFinishBlock(resultString);
-        }
-        
-    });
+    
+    return resultString;
 }
 
 @end

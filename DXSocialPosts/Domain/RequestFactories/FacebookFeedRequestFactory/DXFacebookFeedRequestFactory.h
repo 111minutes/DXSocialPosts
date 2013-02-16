@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 TheSooth. All rights reserved.
 //
 
+#import "DXSPRequest.h"
 
 @interface DXFacebookFeedRequestFactory : DXDALRequestFactory <DXSingleton>
 
-- (DXDALRequest *)getFacebookFeedPostsForUserID:(long long)aUserID responseFormat:(NSString *)aResponseFormat;
+- (DXSPRequest *)getFacebookFeedPostsForUserID:(long long)aUserID responseFormat:(NSString *)aResponseFormat;
 
 @end

@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DXFacebookPostsMapper : NSObject <DXDALMapper>
+#import "DXSPMapper.h"
+
+@interface DXFacebookPostsMapper : NSObject <DXSPMapper>
 
 - (id)initWithFacebookUserID:(long long)aFacebookUserID;
 

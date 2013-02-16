@@ -12,11 +12,13 @@
 #import "DXTwitterTimelineRequestFactory.h"
 #import "DXWeiboTimelineRequestFactory.h"
 
+#import "DXSPRequest.h"
+
 @implementation DXSocialPosts
 
 + (void)getFacebookFeedPostsForUserID:(long long)aUserID withCallbackBlock:(DXSocialPostsCallbackBlock)aCallBackBlock
 {
-    DXDALRequest *getFacebookFeedPostsRequest = [self getFaceookFeedPostsRequestForUserID:aUserID
+    DXSPRequest *getFacebookFeedPostsRequest = [self getFaceookFeedPostsRequestForUserID:aUserID
                                                                            responseFormat:ResponseFormats.json];
     
     [getFacebookFeedPostsRequest addSuccessHandler:^(id response) {
@@ -80,11 +82,11 @@
 
 #pragma mark - Requests
 
-+ (DXDALRequest *)getFaceookFeedPostsRequestForUserID:(long long)aUserID responseFormat:(NSString *)aResponseFormat
++ (DXSPRequest *)getFaceookFeedPostsRequestForUserID:(long long)aUserID responseFormat:(NSString *)aResponseFormat
 {
     DXFacebookFeedRequestFactory *facebookFeedRequestFactory = [DXFacebookFeedRequestFactory shared];
     
-    DXDALRequest *getFacebookFeedPostsRequest = [facebookFeedRequestFactory getFacebookFeedPostsForUserID:aUserID
+    DXSPRequest *getFacebookFeedPostsRequest = [facebookFeedRequestFactory getFacebookFeedPostsForUserID:aUserID
                                                                                            responseFormat:aResponseFormat];
     
     return getFacebookFeedPostsRequest;

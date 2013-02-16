@@ -10,6 +10,7 @@
 #import "DXFacebookPostsMapper.h"
 #import "DXSocialPostsParser.h"
 
+
 @implementation DXFacebookFeedRequestFactory
 
 - (id <DXDALDataProvider>)getDataProvider
@@ -18,25 +19,26 @@
 }
 
 - (Class)getDefaultRequestClass {
-    return [DXDALRequestHTTP class];
+    return [DXSPRequest class];
 }
 
-- (DXDALRequest *)getFacebookFeedPostsForUserID:(long long)aUserID responseFormat:(NSString *)aResponseFormat
-{
-    return [self buildRequestWithConfigBlock:^(DXDALRequestHTTP *request) {
-        
+- (DXSPRequest *)getFacebookFeedPostsForUserID:(long long)aUserID responseFormat:(NSString *)aResponseFormat
+{    
         NSAssert(![aResponseFormat isEqualToString:ResponseFormats.xml], @"XML reponse format currently not supported");
         NSAssert([aResponseFormat isEqualToString:ResponseFormats.json], @"Invalid response format, use json");
+    
+        DXSPRequest *request = [[DXSPRequest alloc] initWithDataProvider:[self getDataProvider]];
         
         request.httpMethod = @"get";
         request.httpPath = @"/feeds/page.php";
     
         request.parser = [DXSocialPostsParser new];
-        request.mapper = [[DXFacebookPostsMapper alloc] initWithFacebookUserID:aUserID];
+        request.spMapper = [[DXFacebookPostsMapper alloc] initWithFacebookUserID:aUserID];
         
         [request addParam:[NSNumber numberWithLongLong:aUserID] withName:@"id"];
         [request addParam:aResponseFormat withName:@"format"];
-    }];
+    
+    return request;
 }
 
 @end
