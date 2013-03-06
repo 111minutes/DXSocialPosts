@@ -1,0 +1,38 @@
+
+SPEC CHECKSUMS: 
+  JTObjectMapping-Fork: e277683e93a4ac3bf92fd0fa924ef1f2dc9c9ba1
+  JSONKit: 3d4708953ea7ae399a49777372d8b060a43ddd27
+  DXDAL: 812b6a68d23b774f73d7e29467cac69f5ff348da
+  SORelativeDateTransformer: 9ace0f59d9c96295c2e0b2480d2a7b4f851cb47a
+  EGOCache: c7116e8a6692eecb542f001a9c71f9b71ae9644b
+  Kiwi: 89ade77eb49c889178cb2779e02514a7b9b9449e
+  Reachability: 1c8584c5f26fa776695efef95caaa50402c94cfb
+  DXFoundation: 4d0ffbc519a6958e352d06ea9ec1a364249d4e37
+  DXDomain: b9251ec916f82cac0dab4c43cef3f41260216efc
+  AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
+
+COCOAPODS: 0.16.2
+
+DEPENDENCIES: 
+- DXDAL
+- DXFoundation
+- Kiwi
+- SORelativeDateTransformer
+
+PODS: 
+- AFNetworking (1.1.0)
+- DXDAL (0.1.9): 
+  - AFNetworking
+  - DXDomain
+  - EGOCache
+  - JSONKit
+  - JTObjectMapping-Fork
+  - Reachability
+- DXDomain (0.0.5)
+- DXFoundation (0.0.9)
+- EGOCache (2.0)
+- JSONKit (1.5pre)
+- JTObjectMapping-Fork (0.0.1)
+- Kiwi (2.0.5)
+- Reachability (3.1.0)
+- SORelativeDateTransformer (1.1.5)
