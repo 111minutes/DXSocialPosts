@@ -18,4 +18,6 @@
 
 @property (nonatomic, strong) NSString *imageLink;
 
+@property (nonatomic, strong) NSString *relativeDateString;
+
 @end
