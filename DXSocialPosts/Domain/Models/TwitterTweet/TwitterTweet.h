@@ -11,6 +11,7 @@
 @interface TwitterTweet : NSObject
 
 @property (nonatomic, strong) NSDate *tweetDate;
+@property (nonatomic, strong) NSString *relativeDateString;
 @property (nonatomic, strong) NSString *tweetText;
 
 @property (nonatomic, strong) NSString *userID;

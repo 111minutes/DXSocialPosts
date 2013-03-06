@@ -12,8 +12,8 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"title: %@\nsharedLink: %@\npostText: %@\nimageLink: %@",
-            self.title, self.sharedLink, self.postText, self.imageLink];
+    return [NSString stringWithFormat:@"title: %@\nsharedLink: %@\npostText: %@\nrelativeDateString: %@\nimageLink: %@",
+            self.title, self.sharedLink, self.postText, self.relativeDateString, self.imageLink];
 }
 
 @end
