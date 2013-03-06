@@ -21,6 +21,8 @@
     NSMutableArray *tweetsArray = [NSMutableArray new];
     SORelativeDateTransformer *transformer = [SORelativeDateTransformer new];
     
+    [DXDateFormatter shared].locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
     for (NSDictionary *tweetDict in inputData) {
         id tweet = [mappingClass new];
         
