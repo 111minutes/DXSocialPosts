@@ -11,6 +11,7 @@
 #import "DXFacebookPostsMapper.h"
 #import "DXDownloader.h"
 #import "DXCacheStorage.h"
+#import "DXDateFormatter.h"
 
 #import "FacebookPost.h"
 
@@ -21,7 +22,6 @@ static const NSInteger kNoTimezoneIndex = 19;
 @interface DXFacebookPostsMapper ()
 
 @property (nonatomic) long long facebookUserID;
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) SORelativeDateTransformer *relativeDateTransformer;
 
 @end
@@ -34,9 +34,6 @@ static const NSInteger kNoTimezoneIndex = 19;
     if (self) {
         
         self.facebookUserID = aFacebookUserID;
-        
-        self.dateFormatter = [NSDateFormatter new];
-        [self.dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
         
         self.relativeDateTransformer = [SORelativeDateTransformer new];
     }
@@ -119,7 +116,7 @@ static const NSInteger kNoTimezoneIndex = 19;
 {
     dateString = [dateString substringToIndex:kNoTimezoneIndex];
     
-    return [self.dateFormatter dateFromString:dateString];
+    return [[DXDateFormatter shared] dateFromString:dateString dateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
 }
 
 #pragma mark -
