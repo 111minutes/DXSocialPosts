@@ -53,12 +53,13 @@ static const NSInteger kNoTimezoneIndex = 19;
             NSString *content = [postDictionary valueForKey:@"content"];
             
             FacebookPost *post = [FacebookPost new];
+            NSString *dateString = [postDictionary objectForKey:@"updated"];
             
             [self mapTitleFromContent:content toModel:post];
             [self mapSharedLinkFromContent:content toModel:post];
             [self mapPostFromContent:content toModel:post];
             [self mapImageURLFromContent:content toModel:post];
-            [self mapRelativeDateFromDateString:[postDictionary objectForKey:@"updated"] toModel:post];
+            [self mapRelativeDateFromDateString:dateString toModel:post];
             
             [facebookPostsArray addObject:post];
         }
