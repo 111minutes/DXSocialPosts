@@ -14,9 +14,15 @@
 
 #import "FacebookPost.h"
 
+#import "SORelativeDateTransformer.h"
+
+static const NSInteger kNoTimezoneIndex = 19;
+
 @interface DXFacebookPostsMapper ()
 
 @property (nonatomic) long long facebookUserID;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) SORelativeDateTransformer *relativeDateTransformer;
 
 @end
 
@@ -26,7 +32,13 @@
 {
     self = [super init];
     if (self) {
+        
         self.facebookUserID = aFacebookUserID;
+        
+        self.dateFormatter = [NSDateFormatter new];
+        [self.dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+        
+        self.relativeDateTransformer = [SORelativeDateTransformer new];
     }
     
     return self;
@@ -49,6 +61,7 @@
             [self mapSharedLinkFromContent:content toModel:post];
             [self mapPostFromContent:content toModel:post];
             [self mapImageURLFromContent:content toModel:post];
+            [self mapRelativeDateFromDateString:[postDictionary objectForKey:@"updated"] toModel:post];
             
             [facebookPostsArray addObject:post];
         }
@@ -85,14 +98,28 @@
 #warning Need to make a "right" regular pattern
     
     NSString *imageURLString = [aContent stringByMatchingRegularExpressionPattern:@"(?:url=)+http[^\\s\"]+"];
-        
-        if (imageURLString) {
-            NSString *imageURLDecodedLink = [imageURLString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
-            aModel.imageLink = imageURLString;
-        } else {
-            [self mapDefaultUserAvatarToModel:aModel avatarType:FacebookAvatarTypes.large];
-        }
+    
+    if (imageURLString) {
+        NSString *imageURLDecodedLink = [imageURLString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        imageURLString = [imageURLDecodedLink stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@""];
+        aModel.imageLink = imageURLString;
+    } else {
+        [self mapDefaultUserAvatarToModel:aModel avatarType:FacebookAvatarTypes.large];
+    }
+}
+
+- (void)mapRelativeDateFromDateString:(NSString *)dateString toModel:(FacebookPost *)aModel
+{
+    NSDate *postDate = [self postDate:dateString];
+    
+    aModel.relativeDateString = [self.relativeDateTransformer transformedValue:postDate];
+}
+
+- (NSDate *)postDate:(NSString *)dateString
+{
+    dateString = [dateString substringToIndex:kNoTimezoneIndex];
+    
+    return [self.dateFormatter dateFromString:dateString];
 }
 
 #pragma mark -

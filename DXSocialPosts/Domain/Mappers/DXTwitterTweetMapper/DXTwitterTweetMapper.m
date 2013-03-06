@@ -12,12 +12,14 @@
 
 #import "DXDownloader.h"
 #import "DXCacheStorage.h"
+#import "SORelativeDateTransformer.h"
 
 @implementation DXTwitterTweetMapper
 
 - (id)mapFromInputData:(id)inputData withClass:(Class)mappingClass
 {
     NSMutableArray *tweetsArray = [NSMutableArray new];
+    SORelativeDateTransformer *transformer = [SORelativeDateTransformer new];
     
     for (NSDictionary *tweetDict in inputData) {
         id tweet = [mappingClass new];
@@ -25,7 +27,10 @@
         NSString *tweetDateString = [tweetDict valueForKey:@"created_at"];
         NSDictionary *twitterUserDict = [tweetDict valueForKey:@"user"];
         
-        [tweet setValue:[self dateFromString:tweetDateString] forKey:@"tweetDate"];
+        NSDate *tweetDate = [self dateFromString:tweetDateString];
+        
+        [tweet setValue:tweetDate forKey:@"tweetDate"];
+        [tweet setValue:[transformer transformedValue:tweetDate] forKey:@"relativeDateString"];
         [tweet setValue:[tweetDict valueForKey:@"text"] forKey:@"tweetText"];
         
         [tweet setValue:[twitterUserDict valueForKey:@"id"] forKey:@"userID"];
@@ -47,7 +52,7 @@
 
 - (NSDate *)dateFromString:(NSString *)aString
 {
-    return [[DXDateFormatter shared] dateFromString:aString dateFormat:@"EEE MMM d HH:mm:ss Z y"];
+    return [[DXDateFormatter shared] dateFromString:aString dateFormat:@"ccc MMM dd HH:mm:ss Z yyyy"];
 }
 
 - (void)mapUserAvatarToModel:(TwitterTweet *)aModel withSize:(NSString *)aSize
